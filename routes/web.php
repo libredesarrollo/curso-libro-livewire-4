@@ -16,6 +16,8 @@ Route::prefix('{current_team}')
 
 Route::middleware(['auth'])->group(function () {
     Route::livewire('invitations/{invitation}/accept', 'pages::teams.accept-invitation')->name('invitations.accept');
+
+    // BLOG DASHBOARD
     Route::group(['prefix' => 'dashboard'], function ()  {
         Route::group(['prefix' => 'category'], function ()  {
             Route::livewire('', 'pages::dashboard.category.index')->name('d-category-index');
@@ -33,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
             Route::livewire('edit/{id}', 'pages::dashboard.tag.save')->name('d-tag-edit');
         });
     });
+    // CONTACT
+     Route::livewire('contact', 'pages::contact.general')->name('general');
 });
 
 
