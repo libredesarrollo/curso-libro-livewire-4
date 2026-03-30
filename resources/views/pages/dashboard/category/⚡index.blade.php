@@ -9,12 +9,6 @@ new class extends Component
 {
     use WithPagination;
 
-    // public $categories;
-    // function mount(){
-    //     $this->categories = Category::all();    
-    //     $this->categories = Category::paginate();    // NO funciona
-    // }
-
     function with(): array{
         return [
             'categories' => Category::paginate(10)    
@@ -28,41 +22,36 @@ new class extends Component
 };
 ?>
 
- <div>
+<div class="space-y-6">
+    <div class="flex items-center justify-between">
+        <flux:heading level="1">Categories</flux:heading>
+        <flux:button href="{{ route('d-category-create') }}" variant="primary">{{ __('New Category') }}</flux:button>
+    </div>
 
-    <x-action-message on="deleted">
-        {{ __('Deleted category success') }}
+    <x-action-message on="deleted" class="mt-4">
+        {{ __('Category deleted successfully') }}
     </x-action-message>
 
+    <flux:card>
+        <flux:table :paginate="$categories">
+            <flux:table.columns>
+                <flux:table.column>Title</flux:table.column>
+                <flux:table.column align="end">Actions</flux:table.column>
+            </flux:table.columns>
 
-    <flux:button href="{{ route('d-category-create') }}" variant="primary">{{ __('Create') }}</flux:button>
-
-    <h1>List</h1>
-    <table class="table w-full">
-        <thead>
-            <tr>
-                <th>
-                    Title
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($categories as $c)
-                <tr>
-                    <td>
-                        {{ $c->title }}
-                    </td>
-                    <td>
-                        <flux:button href="{{ route('d-category-edit', $c) }}" variant="primary" size="sm">{{ __('Edit') }}</flux:button>
-                        <flux:button onclick="confirm('{{ __('Are you sure you want to delete the selected record?') }}') || event.stopImmediatePropagation()" wire:click='delete({{ $c }})' variant="danger" size="sm">{{ __('Delete') }}</flux:button>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <br>
-    {{$categories->links()}}
+            <flux:table.rows>
+                @foreach ($categories as $category)
+                    <flux:table.row>
+                        <flux:table.cell>{{ $category->title }}</flux:table.cell>
+                        <flux:table.cell align="end">
+                            <flux:button.group>
+                                <flux:button size="sm" href="{{ route('d-category-edit', $category) }}">{{ __('Edit') }}</flux:button>
+                                <flux:button size="sm" variant="danger" onclick="confirm('{{ __('Are you sure?') }}') || event.stopImmediatePropagation()" wire:click='delete({{ $category }})'>{{ __('Delete') }}</flux:button>
+                            </flux:button.group>
+                        </flux:table.cell>
+                    </flux:table.row>
+                @endforeach
+            </flux:table.rows>
+        </flux:table>
+    </flux:card>
 </div>
