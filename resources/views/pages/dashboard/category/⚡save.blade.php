@@ -24,12 +24,12 @@ new class extends Component {
 
     public $category;
 
-    protected $rules = [
-        'title' => 'required|min:2|max:255',
-        'slug' => 'required|min:2|max:255',
-        'image' => "nullable|image|max:1024",
-        'text' => 'nullable',
-    ];
+    // protected $rules = [
+    //     'title' => 'required|min:2|max:255',
+    //     'slug' => 'required|min:2|max:255',
+    //     'image' => "nullable|image|max:1024",
+    //     'text' => 'nullable',
+    // ];
 
     function submit()
     {
@@ -66,6 +66,9 @@ new class extends Component {
 ?>
 
 <div class="space-y-6">
+
+
+
     <div class="flex items-center justify-between">
         <flux:heading level="1">{{ $category ? __('Edit Category') : __('New Category') }}</flux:heading>
         <flux:button href="{{ route('d-category-index') }}" variant="ghost">{{ __('Back') }}</flux:button>

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Facades\URL;
+
 #[Fillable(['title', 'slug', 'image', 'text'])]
 class Category extends Model
 {
@@ -14,5 +16,10 @@ class Category extends Model
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function getImageUrl()
+    {
+        return URL::asset("images/category/".$this->image);
     }
 }

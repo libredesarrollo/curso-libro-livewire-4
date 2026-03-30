@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\Facades\URL;
 
-#[Fillable(['title', 'slug','date','image','text','description','posted','type', 'category_id'])];
+#[Fillable(['title', 'slug','date','image','text','description','posted','type', 'category_id'])]
 class Post extends Model
 {
     use HasFactory;
