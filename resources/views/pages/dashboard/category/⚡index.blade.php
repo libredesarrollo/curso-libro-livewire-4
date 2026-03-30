@@ -56,7 +56,6 @@ new class extends Component
                         {{ $c->title }}
                     </td>
                     <td>
-                        
                         <flux:button href="{{ route('d-category-edit', $c) }}" variant="primary" size="sm">{{ __('Edit') }}</flux:button>
                         <flux:button onclick="confirm('{{ __('Are you sure you want to delete the selected record?') }}') || event.stopImmediatePropagation()" wire:click='delete({{ $c }})' variant="danger" size="sm">{{ __('Delete') }}</flux:button>
                     </td>
