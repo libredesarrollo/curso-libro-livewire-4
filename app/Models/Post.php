@@ -19,13 +19,13 @@ class Post extends Model
     }
     public function tags()
     {
-        return $this->morphToMany(Tag::class,'taggables');
+        return $this->morphToMany(Tag::class,'taggable');
     }
     function getImageURL()
     {
-     if($this->image == '' ){
-        return URL::asset("images/default.jpg");
-     }
+        if($this->image == '' ){
+            return URL::asset("images/default.jpg");
+        }
         return URL::asset("images/post/" . $this->image);
     }
 }
