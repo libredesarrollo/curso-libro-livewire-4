@@ -1,16 +1,11 @@
 <?php
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use Livewire\Attributes\Validate;
+use App\Livewire\Contact\BaseForm;
 use App\Models\ContactPerson;
+use Livewire\Attributes\Validate;
 
-new class extends Component {
-
-    use WithFileUploads;
-
-    public ?ContactPerson $contactPerson = null;
-
+new class extends BaseForm
+{
     #[Validate('required|min:2|max:255')]
     public $name;
 
@@ -23,35 +18,29 @@ new class extends Component {
     #[Validate('nullable')]
     public $other;
 
-    function submit()
+    protected function getModelClass(): string
     {
-        $data = $this->validate();
-        
-        if($this->contactPerson){
-            $this->contactPerson->update($data);
-            $this->dispatch("updated");
-        }else{
-            $this->contactPerson = ContactPerson::create($data);
-            $this->dispatch("created");
-        }
+        return ContactPerson::class;
     }
 
-    function mount(?int $id = null){
-        
-        if($id){
-            $this->contactPerson = ContactPerson::findOrFail($id);
-            $this->name = $this->contactPerson->name;
-            $this->surname = $this->contactPerson->surname;
-            $this->choices = $this->contactPerson->choices;
-            $this->other = $this->contactPerson->other;
-        }
+    protected function getStepEventNumber(): int
+    {
+        return 3;
+    }
+
+    protected function setModelData($model = null): void
+    {
+        $this->name = $model?->name;
+        $this->surname = $model?->surname;
+        $this->choices = $model?->choices;
+        $this->other = $model?->other;
     }
 };
 ?>
 
 <div class="space-y-6">
     <div class="flex items-center justify-between">
-        <flux:heading level="1">{{ $contactPerson ? __('Edit ContactPerson') : __('New ContactPerson') }}</flux:heading>
+        <flux:heading level="1">{{ $model ? __('Edit ContactPerson') : __('New ContactPerson') }}</flux:heading>
     </div>
 
     <x-action-message on="created">
@@ -77,7 +66,14 @@ new class extends Component {
 
             <flux:field class="mt-4">
                 <flux:label>Choices</flux:label>
-                <flux:textarea wire:model="choices" placeholder="Choices" rows="2" />
+                <flux:select wire:model='choices'>
+                    <option value=""></option>
+                    <option value="advert">{{ __('Advert') }}</option>
+                    <option value="post">{{ __('Post') }}</option>
+                    <option value="course">{{ __('Course') }}</option>
+                    <option value="movie">{{ __('Movie') }}</option>
+                    <option value="other">{{ __('Other') }}</option>
+                </flux:select>
             </flux:field>
 
             <flux:field class="mt-4">
@@ -86,6 +82,9 @@ new class extends Component {
             </flux:field>
         </flux:card>
 
-        <flux:button type="submit" variant="primary" class="w-full">{{ __('Save') }}</flux:button>
+        <div class="flex gap-2">
+            <flux:button wire:click="$dispatch('stepEvent',[1])">Back</flux:button>
+            <flux:button type="submit" variant="primary" class="w-full">{{ __('Save') }}</flux:button>
+        </div>
     </form>
 </div>

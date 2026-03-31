@@ -1,37 +1,37 @@
 <?php
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use Livewire\Attributes\Validate;
+use App\Livewire\Contact\BaseForm;
 use App\Models\ContactDetail;
+use App\Models\ContactGeneral;
+use Livewire\Attributes\Validate;
 
-new class extends Component {
-
-    use WithFileUploads;
-
-    public ?ContactDetail $contactDetail = null;
-
+new class extends BaseForm
+{
     #[Validate('nullable')]
     public $extra;
 
-    function submit()
+    protected function getModelClass(): string
     {
-        $data = $this->validate();
-        
-        if($this->contactDetail){
-            $this->contactDetail->update($data);
-            $this->dispatch("updated");
-        }else{
-            $this->contactDetail = ContactDetail::create($data);
-            $this->dispatch("created");
-        }
+        return ContactDetail::class;
     }
 
-    function mount(?int $id = null){
-        
-        if($id){
-            $this->contactDetail = ContactDetail::findOrFail($id);
-            $this->extra = $this->contactDetail->extra;
+    protected function getStepEventNumber(): int
+    {
+        return 4;
+    }
+
+    protected function setModelData($model = null): void
+    {
+        $this->extra = $model?->extra;
+    }
+
+    public function back(): void
+    {
+        $contactGeneral = ContactGeneral::find($this->parentId);
+        if ($contactGeneral->type == 'company') {
+            $this->dispatch('stepEvent', 2);
+        } elseif ($contactGeneral->type == 'person') {
+            $this->dispatch('stepEvent', 2.5);
         }
     }
 };
@@ -39,7 +39,7 @@ new class extends Component {
 
 <div class="space-y-6">
     <div class="flex items-center justify-between">
-        <flux:heading level="1">{{ $contactDetail ? __('Edit ContactDetail') : __('New ContactDetail') }}</flux:heading>
+        <flux:heading level="1">{{ $model ? __('Edit ContactDetail') : __('New ContactDetail') }}</flux:heading>
     </div>
 
     <x-action-message on="created">
@@ -57,6 +57,9 @@ new class extends Component {
             </flux:field>
         </flux:card>
 
-        <flux:button type="submit" variant="primary" class="w-full">{{ __('Save') }}</flux:button>
+        <div class="flex gap-2">
+            <flux:button wire:click="back()">Back</flux:button>
+            <flux:button type="submit" variant="primary" class="w-full">{{ __('Save') }}</flux:button>
+        </div>
     </form>
 </div>

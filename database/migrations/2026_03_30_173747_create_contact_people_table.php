@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('name', 255);
             $table->string('surname', 80);
             $table->foreignId('contact_general_id')->onDelete('cascade');
-            $table->enum('choices', ['advert', 'post','course','movie','other']);
+            $table->enum('choices', ['advert', 'post', 'course', 'movie', 'other']);
             $table->string('other', 255)->nullable();
+            $table->timestamps();
         });
     }
 

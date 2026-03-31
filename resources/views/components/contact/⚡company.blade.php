@@ -1,16 +1,11 @@
 <?php
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use Livewire\Attributes\Validate;
+use App\Livewire\Contact\BaseForm;
 use App\Models\ContactCompany;
+use Livewire\Attributes\Validate;
 
-new class extends Component {
-
-    use WithFileUploads;
-
-    public ?ContactCompany $contactCompany = null;
-
+new class extends BaseForm
+{
     #[Validate('required|min:2|max:255')]
     public $name;
 
@@ -26,36 +21,31 @@ new class extends Component {
     #[Validate('nullable')]
     public $choices;
 
-    function submit()
+    protected function getModelClass(): string
     {
-        $data = $this->validate();
-        
-        if($this->contactCompany){
-            $this->contactCompany->update($data);
-            $this->dispatch("updated");
-        }else{
-            $this->contactCompany = ContactCompany::create($data);
-            $this->dispatch("created");
-        }
+        return ContactCompany::class;
     }
 
-    function mount(?int $id = null){
-        
-        if($id){
-            $this->contactCompany = ContactCompany::findOrFail($id);
-            $this->name = $this->contactCompany->name;
-            $this->identification = $this->contactCompany->identification;
-            $this->email = $this->contactCompany->email;
-            $this->extra = $this->contactCompany->extra;
-            $this->choices = $this->contactCompany->choices;
-        }
+    protected function getStepEventNumber(): int
+    {
+        return 3;
+    }
+
+    protected function setModelData($model = null): void
+    {
+        $this->name = $model?->name;
+        $this->identification = $model?->identification;
+        $this->email = $model?->email;
+        $this->extra = $model?->extra;
+        $this->choices = $model?->choices;
     }
 };
 ?>
 
 <div class="space-y-6">
+
     <div class="flex items-center justify-between">
-        <flux:heading level="1">{{ $contactCompany ? __('Edit ContactCompany') : __('New ContactCompany') }}</flux:heading>
+        <flux:heading level="1">{{ $model ? __('Edit ContactCompany') : __('New ContactCompany') }}</flux:heading>
     </div>
 
     <x-action-message on="created">
@@ -96,6 +86,9 @@ new class extends Component {
             </flux:field>
         </flux:card>
 
-        <flux:button type="submit" variant="primary" class="w-full">{{ __('Save') }}</flux:button>
+        <div class="flex gap-2">
+            <flux:button wire:click="$dispatch('stepEvent',[1])">Back</flux:button>
+            <flux:button type="submit" variant="primary" class="w-full">{{ __('Save') }}</flux:button>
+        </div>
     </form>
 </div>

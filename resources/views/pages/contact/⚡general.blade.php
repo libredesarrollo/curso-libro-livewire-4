@@ -5,13 +5,13 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Layout;
 
 use App\Models\ContactGeneral;
 use App\Models\Category;
 use App\Models\Tag;
 
-#[On('stepEvent')]
-new class extends Component {
+new #[Layout('layouts.contact')] class extends Component {
     use WithFileUploads;
 
     public $step = 1;
@@ -30,6 +30,7 @@ new class extends Component {
     //protected $listeners=['stepEvent']; // #[On('stepEvent')]
 
     //************EVENTO */
+    #[On('stepEvent')]
     public function stepEvent($step)
     {
         $this->step = $step;
@@ -37,6 +38,8 @@ new class extends Component {
 
     function submit()
     {
+        
+        // return $this->dispatch('parentId',parentId:5); // No funciona porque sus hijos no estan renderizados por el @if/blade
         $data = $this->validate();
 
         if ($this->contactGeneral) {
@@ -45,6 +48,14 @@ new class extends Component {
         } else {
             $this->contactGeneral = ContactGeneral::create($data);
             $this->dispatch('created');
+            $this->redirectRoute('contact-edit', ['id' => $this->contactGeneral->id]);
+        }
+
+        if ($this->contactGeneral->type == 'company') {
+            $this->dispatch('stepEvent', 2);
+        } else {
+            // person
+            $this->dispatch('stepEvent', 2.5);
         }
     }
 
@@ -55,6 +66,14 @@ new class extends Component {
             $this->subject = $this->contactGeneral->subject;
             $this->message = $this->contactGeneral->message;
             $this->type = $this->contactGeneral->type;
+
+            
+            if ($this->type == 'company') {
+                $this->step = 2;
+            } else if ($this->type == 'person') {
+                $this->step = 2.5;
+            }
+        
         }
     }
 };
@@ -73,12 +92,26 @@ new class extends Component {
         {{ __('ContactGeneral updated successfully') }}
     </x-action-message>
 
+    <div class="flex">
+        <div x-data="{ active:$wire.entangle('step') }" class="flex mx-auto flex-col sm:flex-row">
+            <div class="step" :class="{ 'active': active == 1 }">
+                {{ __('STEP 1') }}
+            </div>
+            <div class="step" :class="{ 'active': parseInt(active) == 2 }">
+                {{ __('STEP 2') }}
+            </div>
+            <div class="step" :class="{ 'active': active == 3 }">
+                {{ __('STEP 3') }}
+            </div>
+        </div>
+    </div>
+
     @if ($step == 1)
         <form wire:submit.prevent="submit" class="space-y-6">
             <flux:card>
                 <flux:field>
                     <flux:label>Title</flux:label>
-                    <flux:input wire:model="subject" placeholder="Enter contactGeneral subject" />
+                    <flux:input wire:model.live="subject" placeholder="Enter contactGeneral subject" />
                     <flux:error name="subject" />
                 </flux:field>
 
@@ -103,11 +136,12 @@ new class extends Component {
             <flux:button type="submit" variant="primary" class="w-full">{{ __('Save') }}</flux:button>
         </form>
     @elseif ($step == 2)
-        <livewire:contact.company />
+        <livewire:contact.company :parent-id="$contactGeneral->id" />
     @elseif ($step == 2.5)
-        <livewire:contact.person />
+        <livewire:contact.person :parent-id="$contactGeneral->id"/>
+        {{-- <livewire:contact.person wire:model="contactGeneral.id"/> prueba con #[Modelable] --}} 
     @elseif ($step == 3)
-        <livewire:contact.detail />
+        <livewire:contact.detail :parent-id="$contactGeneral->id"/>
     @else
         END
     @endif

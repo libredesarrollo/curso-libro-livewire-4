@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('extra', 500);
             $table->foreignId('contact_general_id')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
