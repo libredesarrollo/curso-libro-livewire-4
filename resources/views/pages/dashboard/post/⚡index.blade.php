@@ -1,111 +1,73 @@
 <?php
 
-use Livewire\Component;
-use Livewire\Attributes\URL;
-use Livewire\WithPagination;
-
-use App\Models\Post;
+use App\Livewire\Dashboard\DataTableComponent;
 use App\Models\Category;
+use App\Models\Post;
+use Livewire\Attributes\URL;
 
-new class extends Component {
-    use WithPagination;
+new class extends DataTableComponent
+{
+    #[URL]
+    public ?string $search = null;
 
-    #[URL] // (as:'q')
-    public $posted;
     #[URL]
-    public $type;
-    #[URL]
-    public $category_id;
-    #[URL]
-    public $search;
+    public ?string $type = null;
 
-    // date
     #[URL]
-    public $from;
-    #[URL]
-    public $to;
+    public ?string $category_id = null;
 
-    // order
-    public $sortColumn = 'id';
-    public $sortDirection = 'desc';
-    public $columns = [
-        'id' => "Id",
-        'title' => "Title",
-        'category_id' => "Category",
-        'date' => "Date ",
-        'type' => "Type",
-        'posted' => "Posted",
+    #[URL]
+    public ?string $posted = null;
+
+    #[URL]
+    public ?string $from = null;
+
+    #[URL]
+    public ?string $to = null;
+
+    public array $columns = [
+        'id' => 'Id',
+        'title' => 'Title',
+        'category_id' => 'Category',
+        'date' => 'Date',
+        'type' => 'Type',
+        'posted' => 'Posted',
     ];
 
-    public function sort($column)
+    protected function getAllFilters(): array
     {
-        $this->sortColumn = $column;
-        $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
+        return [
+            'search' => $this->search,
+            'type' => $this->type,
+            'category_id' => $this->category_id,
+            'posted' => $this->posted,
+            'from' => $this->from,
+            'to' => $this->to,
+            'sortColumn' => $this->sortColumn,
+            'sortDirection' => $this->sortDirection,
+        ];
     }
 
-    function with(): array
+    protected function getModelClass(): string
     {
-        // $posts = Post::where("id", ">=", 1);
-        // if ($this->type) {
-        //     $posts->where('type', $this->type);
-        // }
-        // if ($this->category_id) {
-        //     $posts->where('category_id', $this->category_id);
-        // }
-        // if ($this->posted) {
-        //     $posts->where('posted', $this->posted);
-        // }
+        return Post::class;
+    }
 
-        // if ($this->search) {
-        //     $posts->where(function ($query) {
-        //         $query
-        //             ->orWhere('id', 'like', '%' . $this->search . '%')
-        //             ->orWhere('description', 'like', '%' . $this->search . '%')
-        //             ->orWhere('title', 'like', '%' . $this->search . '%');
-        //     });
-        // }
-
-        // if ($this->from && $this->to) {
-        //     $posts->whereBetween('date', [ date($this->from), date($this->to) ]);
-        // }
-   
-
+    public function with(): array
+    {
         $posts = Post::with('category')
-            ->when($this->type, function ($query, $type) {
-                $query->where('type', $type);
-            })
-            ->when($this->category_id, function ($query, $categoryId) {
-                $query->where('category_id', $categoryId);
-            })
-            ->when($this->posted, function ($query, $posted) {
-                $query->where('posted', $posted);
-            })
-            ->when($this->search, function ($query, $search) {
-                $query->where(function ($q) {
-                    $q->orWhere('id', 'like', '%' . $this->search . '%')
-                        ->orWhere('description', 'like', '%' . $this->search . '%')
-                        ->orWhere('title', 'like', '%' . $this->search . '%');
-                    });
-                })
-            // ->when($this->from && $this->to, function ($query, $b) use($this->from, $this->to) {
-            //     $query->whereBetween('date', [ date($from), date($to) ]);
-            // }); // NO SIRVEN!
-            ->when($this->from && $this->to, fn ($query) =>$query->whereBetween('date', [ date($this->from), date($this->to) ]))
-            ->orderBy($this->sortColumn, $this->sortDirection);
-
-
-        // dd($posts->toSql());
+            ->filterDataTable($this->getAllFilters())
+            ->paginate(10);
 
         $categories = Category::orderBy('title')->pluck('title', 'id');
 
         return [
-            'posts' => $posts->paginate(10),
+            'posts' => $posts,
             'categories' => $categories,
-            // 'posts' => Post::with('category')->paginate(10)
         ];
     }
 
-    function delete(Post $post)
+    public function delete(Post $post): void
     {
         $post->delete();
         $this->dispatch('deleted');
@@ -114,7 +76,6 @@ new class extends Component {
 ?>
 
 <div class="space-y-6">
-
     <div class="grid grid-cols-2 gap-2 my-3">
         <flux:select class="block w-full" wire:model.live='posted'>
             <option value="">{{ __('Posted') }}</option>
@@ -130,14 +91,14 @@ new class extends Component {
         </flux:select>
         <flux:select class="block w-full" wire:model.live='category_id'>
             <option value="">{{ __('Category') }}</option>
-            @foreach ($categories as $i => $c)
-                <option value="{{ $i }}">{{ $c }}</option>
+            @foreach ($categories as $id => $title)
+                <option value="{{ $id }}">{{ $title }}</option>
             @endforeach
         </flux:select>
         <flux:input wire:model.live='search' placeholder="{{ __('Search...') }}" />
         <div class="grid grid-cols-2 gap-2">
-            <x-input wire:model='from' placeholder="From" type='date' />
-            <x-input wire:model.live='to' placeholder="To" type='date' />
+            <x-input wire:model.live='from' placeholder="{{ __('From') }}" type='date' />
+            <x-input wire:model.live='to' placeholder="{{ __('To') }}" type='date' />
         </div>
         <flux:button variant="subtle" href="{{ route('d-post-index') }}">
             {{ __('Reset') }}
@@ -145,7 +106,7 @@ new class extends Component {
     </div>
 
     <div class="flex items-center justify-between">
-        <flux:heading level="1">Posts</flux:heading>
+        <flux:heading level="1">{{ __('Posts') }}</flux:heading>
         <flux:button href="{{ route('d-post-create') }}" variant="primary">{{ __('New Post') }}</flux:button>
     </div>
 
@@ -157,25 +118,18 @@ new class extends Component {
         <flux:table :paginate="$posts">
             <flux:table.columns>
                 <tr class="border-b">
-                @foreach ($columns as $key => $c)
-                   <flux:table.column>
-                        <button wire:click="sort('{{ $c }}')" class="flex items-center gap-1">
-                            {{ $key }}
-                            @if ($sortColumn === $c)
-                                <span>{!! $sortDirection === 'asc' ? '&uarr;' : '&darr;' !!}</span>
-                            @endif
-                        </button>
-                    </flux:table.column>
-                @endforeach
-                <flux:table.column align="end">Actions</flux:table.column>
-            </tr>
-                {{-- <flux:table.column>Id</flux:table.column>
-                <flux:table.column>Title</flux:table.column>
-                <flux:table.column>Category</flux:table.column>
-                <flux:table.column>Date</flux:table.column>
-                <flux:table.column>Type</flux:table.column>
-                <flux:table.column>Posted</flux:table.column>
-                <flux:table.column align="end">Actions</flux:table.column> --}}
+                    @foreach ($columns as $key => $label)
+                        <flux:table.column>
+                            <button wire:click="sort('{{ $key }}')" class="flex items-center gap-1">
+                                {{ __($label) }}
+                                @if ($sortColumn === $key)
+                                    <span>{!! $sortDirection === 'asc' ? '&uarr;' : '&darr;' !!}</span>
+                                @endif
+                            </button>
+                        </flux:table.column>
+                    @endforeach
+                    <flux:table.column align="end">{{ __('Actions') }}</flux:table.column>
+                </tr>
             </flux:table.columns>
 
             <flux:table.rows>
@@ -186,20 +140,23 @@ new class extends Component {
                         <flux:table.cell>{{ $post->category?->title }}</flux:table.cell>
                         <flux:table.cell>{{ $post->date }}</flux:table.cell>
                         <flux:table.cell>
-                            <flux:badge>{{ $post->type }}</flux:badge>
+                            <flux:badge>{{ __($post->type) }}</flux:badge>
                         </flux:table.cell>
                         <flux:table.cell>
-                            <flux:badge :variant="$post->posted ? 'green' : 'red'">
-                                {{ $post->posted == 'yes' ? 'Yes' : 'No' }}
+                            <flux:badge :variant="$post->posted === 'yes' ? 'green' : 'red'">
+                                {{ $post->posted === 'yes' ? __('Yes') : __('No') }}
                             </flux:badge>
                         </flux:table.cell>
                         <flux:table.cell align="end">
                             <flux:button.group>
                                 <flux:button size="sm" href="{{ route('d-post-edit', $post) }}">
-                                    {{ __('Edit') }}</flux:button>
+                                    {{ __('Edit') }}
+                                </flux:button>
                                 <flux:button size="sm" variant="danger"
                                     onclick="confirm('{{ __('Are you sure?') }}') || event.stopImmediatePropagation()"
-                                    wire:click='delete({{ $post }})'>{{ __('Delete') }}</flux:button>
+                                    wire:click='delete({{ $post }})'>
+                                    {{ __('Delete') }}
+                                </flux:button>
                             </flux:button.group>
                         </flux:table.cell>
                     </flux:table.row>
