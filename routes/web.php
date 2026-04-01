@@ -35,11 +35,14 @@ Route::middleware(['auth'])->group(function () {
             Route::livewire('edit/{id}', 'pages::dashboard.tag.save')->name('d-tag-edit');
         });
     });
-
+    // TODO
+    Route::livewire('todo', 'pages::todo.todo')->name('todo');
 });
 
 // CONTACT
 Route::livewire('contact', 'pages::contact.general')->name('general');
 Route::livewire('contact/{id}', 'pages::contact.general')->name('contact-edit');
+
+
 
 require __DIR__.'/settings.php';
