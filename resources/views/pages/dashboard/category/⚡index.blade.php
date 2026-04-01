@@ -3,13 +3,14 @@
 use Livewire\Component;
 
 use App\Livewire\Dashboard\DataTableComponent;
+use Livewire\Attributes\URL;
 
 use App\Models\Category;
 
 new class extends DataTableComponent
 {
 
-     #[URL]
+    #[URL]
     public ?string $search = null;
 
     public array $columns = [
@@ -83,7 +84,7 @@ new class extends DataTableComponent
 
     <flux:card>
         <flux:table :paginate="$categories">
-            <flux:table.columns>
+            {{-- <flux:table.columns>
                 <tr class="border-b">
                     @foreach ($columns as $key => $label)
                         <flux:table.column>
@@ -97,7 +98,9 @@ new class extends DataTableComponent
                     @endforeach
                     <flux:table.column align="end">{{ __('Actions') }}</flux:table.column>
                 </tr>
-            </flux:table.columns>
+            </flux:table.columns> --}}
+
+            @include('pages.dashboard.fragment._columns-datatable')
 
             <flux:table.rows>
                 @foreach ($categories as $category)
