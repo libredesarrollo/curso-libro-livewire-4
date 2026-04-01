@@ -12,6 +12,13 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected function casts(): array
+    {
+        return [
+            'date' => 'datetime'
+        ];
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

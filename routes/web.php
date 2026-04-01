@@ -43,6 +43,12 @@ Route::middleware(['auth'])->group(function () {
 Route::livewire('contact', 'pages::contact.general')->name('general');
 Route::livewire('contact/{id}', 'pages::contact.general')->name('contact-edit');
 
+Route::group(['prefix' => 'blog'], function () {
+    // BLOG
+    Route::livewire('/', 'pages::blog.index')->name('web.index');
+    Route::livewire('/{post:slug}', 'pages::blog.show')->name('web.show');
+});
+
 
 
 require __DIR__.'/settings.php';
