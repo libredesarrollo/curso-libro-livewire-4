@@ -1,19 +1,42 @@
 <?php
 
 use Livewire\Component;
-use Livewire\WithPagination;
+
+use App\Livewire\Dashboard\DataTableComponent;
 
 use App\Models\Category;
 
-new class extends Component
+new class extends DataTableComponent
 {
-    use WithPagination;
+
+     #[URL]
+    public ?string $search = null;
+
+    public array $columns = [
+        'id' => 'Id',
+        'title' => 'Title'
+    ];
+
+    protected function getAllFilters(): array
+    {
+        return [
+            'search' => $this->search
+        ];
+    }
+
+    protected function getModelClass(): string
+    {
+        return Category::class;
+    }
 
     public $categoryToDelete;
 
     function with(): array{
+        $categories = Category::
+            filterDataTable($this->getAllFilters())
+            ->paginate(10);
         return [
-            'categories' => Category::paginate(10)    
+            'categories' => $categories  
         ];
     }
 
@@ -33,6 +56,8 @@ new class extends Component
 ?>
 
 <div class="space-y-6">
+    <flux:input wire:model.live.debounce.500ms='search' placeholder="{{ __('Search...') }}" />
+    <flux:button variant="subtle" href="{{ route('d-category-index') }}">{{ __('Reset') }}</flux:button>
 
     <flux:modal name="delete-category">
         <div class="m-1">
@@ -59,13 +84,25 @@ new class extends Component
     <flux:card>
         <flux:table :paginate="$categories">
             <flux:table.columns>
-                <flux:table.column>Title</flux:table.column>
-                <flux:table.column align="end">Actions</flux:table.column>
+                <tr class="border-b">
+                    @foreach ($columns as $key => $label)
+                        <flux:table.column>
+                            <button wire:click="sort('{{ $key }}')" class="flex items-center gap-1">
+                                {{ __($label) }}
+                                @if ($sortColumn === $key)
+                                    <span>{!! $sortDirection === 'asc' ? '&uarr;' : '&darr;' !!}</span>
+                                @endif
+                            </button>
+                        </flux:table.column>
+                    @endforeach
+                    <flux:table.column align="end">{{ __('Actions') }}</flux:table.column>
+                </tr>
             </flux:table.columns>
 
             <flux:table.rows>
                 @foreach ($categories as $category)
                     <flux:table.row>
+                        <flux:table.cell>{{ $category->id }}</flux:table.cell>
                         <flux:table.cell>{{ $category->title }}</flux:table.cell>
                         <flux:table.cell align="end">
                             <flux:button.group>

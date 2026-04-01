@@ -1,9 +1,11 @@
 <?php
 
+use Livewire\Attributes\URL;
+
 use App\Livewire\Dashboard\DataTableComponent;
+
 use App\Models\Category;
 use App\Models\Post;
-use Livewire\Attributes\URL;
 
 new class extends DataTableComponent
 {
@@ -72,10 +74,11 @@ new class extends DataTableComponent
         $post->delete();
         $this->dispatch('deleted');
     }
-};
+}
 ?>
 
 <div class="space-y-6">
+
     <div class="grid grid-cols-2 gap-2 my-3">
         <flux:select class="block w-full" wire:model.live='posted'>
             <option value="">{{ __('Posted') }}</option>
@@ -110,9 +113,17 @@ new class extends DataTableComponent
         <flux:button href="{{ route('d-post-create') }}" variant="primary">{{ __('New Post') }}</flux:button>
     </div>
 
+    {{-- Con eventos como el $this->dispatch("created"); --}}
     <x-action-message on="deleted" class="mt-4">
         {{ __('Post deleted successfully') }}
     </x-action-message>
+
+    {{-- Con flash con redirecciones --}}
+    @if (session('status'))
+        <flux:badge color="green" icon="check" class="mb-4">
+            {{ session('status') }}
+        </flux:badge>
+    @endif
 
     <flux:card>
         <flux:table :paginate="$posts">
