@@ -117,7 +117,10 @@ new class extends Component {
 
             <flux:field class="mt-4">
                 <flux:label>Content</flux:label>
-                <flux:textarea wire:model="form.text" placeholder="Post content" rows="6" />
+                <flux:textarea wire:model="form.text" placeholder="Post content" rows="6" class="hidden!" />
+                <div wire:ignore>
+                    <div id="editor"></div>
+                </div>
             </flux:field>
 
             <flux:field class="mt-4">
@@ -141,4 +144,12 @@ new class extends Component {
 
         <flux:button type="submit" variant="primary" class="w-full">{{ __('Save') }}</flux:button>
     </form>
+     @vite(['resources/js/ckeditor.js','resources/css/ckeditor.css'])
+    @script
+    <script>
+        editor.model.document.on('change:data', () => {
+            $wire.form.text = editor.getData()
+        })
+    </script>
+    @endscript
 </div>
