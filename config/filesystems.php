@@ -32,7 +32,7 @@ return [
 
         'public_upload' => [
             'driver' => 'local',
-            'root' => public_path()
+            'root' => public_path(),
         ],
 
         'local' => [

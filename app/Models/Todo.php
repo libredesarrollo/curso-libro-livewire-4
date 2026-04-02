@@ -6,7 +6,4 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 
 #[Fillable(['user_id', 'name', 'position', 'status'])]
-class Todo extends Model
-{
-    
-}
+class Todo extends Model {}

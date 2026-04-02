@@ -138,7 +138,7 @@ new class extends Component
                 </template>
             </ul>
 
-            @if (count($wire.get('todos') ?? []) > 0)
+            @if (count($todos ?? []) > 0)
                 <div class="mt-6 flex justify-end">
                     <flux:button variant="danger" @click="removeAll" icon="trash">
                         Eliminar todas
@@ -173,7 +173,7 @@ new class extends Component
                         this.todos.push(arrgs[0])
                     })
 
-                    Sortable.create(this.$refs.items, {
+                    window.Sortable.create(this.$refs.items, {
                         onEnd: (event) => {
                             // var todosAux = []
                             var todosPKs = []

@@ -9,8 +9,6 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up(): void
     {
@@ -23,15 +21,14 @@ return new class extends Migration
             $table->text('description');
             $table->text('text')->nullable();
             $table->enum('posted', ['yes', 'not'])->default('not');
-            $table->enum('type', ['advert', 'post','course','movie'])->default('post');
+            $table->enum('type', ['advert', 'post', 'course', 'movie'])->default('post');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down(): void
     {

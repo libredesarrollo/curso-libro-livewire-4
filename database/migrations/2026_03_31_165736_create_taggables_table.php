@@ -8,21 +8,18 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up(): void
     {
-       Schema::create('taggables', function (Blueprint $table) {
+        Schema::create('taggables', function (Blueprint $table) {
             $table->bigInteger('tag_id')->unsigned();
             $table->bigInteger('taggable_id')->unsigned();
-            $table->string('taggable_type');    
+            $table->string('taggable_type');
         });
     }
+
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down(): void
     {
