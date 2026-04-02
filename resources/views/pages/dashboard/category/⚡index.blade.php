@@ -49,7 +49,6 @@ new class extends DataTableComponent
 
     function delete(/*Category $category*/)  {
         // $category->delete();
-        // return $this->js("alert('¡Post guardado correctamente!')");
         Flux::modal("delete-category")->close();
         $this->categoryToDelete->delete();
         $this->dispatch("deleted");
@@ -120,14 +119,13 @@ new class extends DataTableComponent
             </flux:table.rows>
         </flux:table>
     </flux:card>
-    
-    {{-- @script
-        <script>
-            $wire.intercept('delete', ({ action }) => {
-                if (!confirm('Are you sure?')) {
-                    action.cancel()
-                }
-            })
-        </script>
-    @endscript --}}
+{{-- @script
+    <script>
+        $wire.intercept('delete', ({ action }) => {
+            if (!confirm('Are you sure?')) {
+                action.cancel()
+            }
+        })
+    </script>
+@endscript --}}
 </div>
