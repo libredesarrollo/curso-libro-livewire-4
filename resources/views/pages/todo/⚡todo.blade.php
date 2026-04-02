@@ -78,65 +78,79 @@ new class extends Component
 };
 ?>
 
-<div x-data="data()" x-init="order()" class="container my-3 mx-auto" style="max-width: 500px;">
+<div x-data="data()" x-init="order()" class="max-w-xl mx-auto py-8">
+    <flux:card>
+        <flux:heading level="1" class="mb-6">Todo List</flux:heading>
 
-    <x-card>
-    
-        {{-- search --}}
-        <label class="col-form-label">
-            Search
-        </label>
-        <flux:input type="text" x-model="search" class="form-control" />
-        {{-- search --}}
+        <div class="space-y-4">
+            <flux:input 
+                type="text" 
+                x-model="search" 
+                placeholder="Buscar tareas..."
+                icon="magnifying-glass"
+            />
 
-        {{-- create --}}
-        <form wire:submit.prevent="save()" class="flex gap-2 mt-2">
-            <label class="mt-2">Create</label>
-            <flux:input type="text" wire:model="task" class="form-control" />
+            <form wire:submit.prevent="save()" class="flex gap-2">
+                <flux:input 
+                    type="text" 
+                    wire:model="task" 
+                    placeholder="Nueva tarea..."
+                    class="flex-1"
+                />
+                <flux:button type="submit" variant="primary" icon="plus">
+                    Añadir
+                </flux:button>
+            </form>
+            @error('task')
+                <flux:error name="task" />
+            @enderror
+        </div>
 
-            <flux:button type="submit">Save</flux:button>
-        </form>
-        @error('task')
-            <p class="text-red-800">{{ $message }}</p>
-        @enderror
-        {{-- create --}}
+        <div class="mt-6">
+            <ul x-ref="items" class="space-y-2" wire:ignore>
+                <template x-for="t in filterTodo()" :key="t.id">
+                    <li :id="t.id" class="flex items-center gap-3 p-3 bg-zinc-50 dark:bg-zinc-800 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors">
+                        <input 
+                            type="checkbox" 
+                            x-model="t.status" 
+                            @change="$wire.dispatch('update', { todo: t })"
+                            class="w-5 h-5 rounded border-zinc-300 text-purple-600 focus:ring-purple-500"
+                        >
+                        <div class="flex-1">
+                            <template x-if="completed(t)">
+                                <span class="text-green-600 text-sm font-medium">Completado</span>
+                            </template>
+                            <template x-if="!completed(t)">
+                                <span class="text-orange-600 text-sm font-medium">Pendiente</span>
+                            </template>
+                            <span x-text="t.name" @click="t.editMode=true" x-show="!t.editMode" class="block mt-1"></span>
+                            <flux:input 
+                                type="text" 
+                                @keyup.enter="t.editMode=false; $wire.dispatch('update', { todo: t })"
+                                x-model="t.name" 
+                                x-show="t.editMode" 
+                                class="mt-1"
+                            />
+                        </div>
+                        <flux:button variant="danger" size="sm" @click="remove(t)" icon="trash">
+                        </flux:button>
+                    </li>
+                </template>
+            </ul>
 
-        {{-- list --}}
-        <ul x-ref="items" class="my-3" wire:ignore>
-            <template x-for="t in filterTodo()" :key="t.id">
-                <li :id='t.id' class="border py-3 px-4 mt-2">
-                    <flux:button variant="danger" size='xs' @click="remove(t)" class="float-right mt-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-3">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                        </svg>
+            @if (count($wire.get('todos') ?? []) > 0)
+                <div class="mt-6 flex justify-end">
+                    <flux:button variant="danger" @click="removeAll" icon="trash">
+                        Eliminar todas
                     </flux:button>
-                    <template x-if="completed(t)">
-                        <span>
-                            Completed -
-                        </span>
-                    </template>
-                    <template x-if="!completed(t)">
-                        <span>
-                            Incompleted -
-                        </span>
-                    </template>
-
-                    <input type="checkbox" x-model="t.status" @change="$wire.dispatch('update', { todo: t })"
-                        :checked="t.status == 1">
-                    <span x-text="t.name" @click="t.editMode=true" x-show="!t.editMode"></span>
-
-                    <flux:input type="text" @keyup.enter="t.editMode=false; $wire.dispatch('update', { todo: t })"
-                        x-model="t.name" x-show="t.editMode" />
-                </li>
-            </template>
-        </ul>
-        {{-- list --}}
-
-        <flux:button variant="danger" @click="removeAll">Delete All</flux:button>
-    </x-card>
-
+                </div>
+            @else
+                <flux:text class="text-center text-zinc-500 py-8">
+                    No hay tareas. ¡Añade una!
+                </flux:text>
+            @endif
+        </div>
+    </flux:card>
 </div>
 
 @script

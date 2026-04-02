@@ -123,24 +123,25 @@ new class extends Component
 
 <div>
     @if ($item)
-        <div class="box mb-3">
-            <div class="flex flex-row gap-2 items-center item_{{ $item['id'] }}" >
-                {{-- <flux:input wire:keydown.enter='add({{ $item['id'] }},$wire.count)' wire:model='count' 
-                    type="number"/> --}}
-                    <flux:input 
-                        :label="$item['title']" 
-                        type="number" 
-                        wire:model="count" 
-                        wire:keydown.enter="addCurrentItem()" 
-                    />
+        <div class="flex items-center gap-4 p-3 bg-zinc-50 dark:bg-zinc-800 rounded-lg mt-2">
+            <div class="flex-1">
+                <flux:input 
+                    :label="$item['title']" 
+                    type="number" 
+                    wire:model="count" 
+                    wire:keydown.enter="addCurrentItem()"
+                    wire:change="addCurrentItem()"
+                />
+            </div>
+            <div class="flex items-center gap-2">
+                <flux:button 
+                    variant="danger" 
+                    size="sm" 
+                    icon="trash"
+                    wire:click="add(Post::find({{ $item['id']}}), 0)"
+                >
+                </flux:button>
             </div>
         </div>
-        {{-- <div class="box mb-3">
-            <div class="flex flex-row gap-2 items-center item_{{ $item->id }}" >
-                <flux:input wire:keydown.enter='add({{ $item }},$wire.count)' wire:model='count' class="!w-20"
-                    type="number"/>
-                <flux:label>{{ $item->title }}</flux:label>
-            </div>
-        </div> --}}
-     @endif
+    @endif
 </div>

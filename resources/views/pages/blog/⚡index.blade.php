@@ -2,7 +2,7 @@
 
 use Livewire\Component;
 
-use Livewire\Attributes\Layouts;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\URL;
 
 use App\Livewire\Dashboard\DataTableComponent;
@@ -66,67 +66,78 @@ new #[Layout('layouts.web')] class extends DataTableComponent
 };
 ?>
 
-<div>
-    <h1 class="text-6xl text-center">Post List</h1>
-    <flux:card class="mx-auto">
-        
+<div class="max-w-5xl mx-auto space-y-8 py-8">
+    <flux:heading level="1" class="text-center">{{ __('Blog') }}</flux:heading>
 
-        <div class="grid grid-cols-2 mb-2 gap-2">
-            <flux:input class="w-full" type="text" wire:model.live.debounce.500ms="search"
-                placeholder="Buscar por id, tìtulo o descripción"></flux:input>
-            <div class="grid grid-cols-2 gap-2">
-                <flux:input class="w-full" type="date" wire:model="from" placeholder="Desde"></flux:input>
-                <flux:input class="w-full" type="date" wire:model.live="to" placeholder="Hasta"></flux:input>
-            </div>
-        </div>
-
-
-        <div class="flex gap-2 mb-2">
-
-            <flux:select class="block w-full" wire:model.live="type">
-                <option value="">{{ __('Type') }}</option>
-                <option value="advert">advert</option>
-                <option value="post">post</option>
-                <option value="course">course</option>
-                <option value="movie">movie</option>
+    <flux:card>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <flux:input 
+                wire:model.live.debounce.500ms="search" 
+                placeholder="Buscar posts..." 
+                icon="magnifying-glass"
+            />
+            <flux:select wire:model.live="type" placeholder="Todos los tipos">
+                <option value="advert">Advert</option>
+                <option value="post">Post</option>
+                <option value="course">Course</option>
+                <option value="movie">Movie</option>
             </flux:select>
-
-
-            <flux:select class="block w-full" wire:model.live="category_id">
-                <option value="">{{ __('Category') }}</option>
+            <flux:select wire:model.live="category_id" placeholder="Todas las categorías">
                 @foreach ($categories as $i => $c)
                     <option value="{{ $i }}">{{ $c }}</option>
                 @endforeach
             </flux:select>
         </div>
-        <flux:button variant="subtle" href="{{ route('web.index') }}">
-            {{ __('Reset') }}
-        </flux:button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <flux:input type="date" wire:model="from" placeholder="Desde" />
+            <flux:input type="date" wire:model.live="to" placeholder="Hasta" />
+        </div>
+        <div class="mt-4">
+            <flux:button variant="subtle" href="{{ route('web.index') }}" icon="arrow-path">
+                {{ __('Limpiar filtros') }}
+            </flux:button>
+        </div>
     </flux:card>
 
-    {{-- List --}}
-
-    <div class="flex flex-col items-center mt-5">
-        <div class="w-full sm:max-w-4xl overflow-hidden">
-            @foreach ($posts as $p)
-                <h4 class="text-center text-4xl mb-3">{{ $p->title }}</h4>
-                <p class="text-center text-sm text-gray-500 italic font-bold uppercase tracking-widest">
-                    {{ $p->date->format('d-m-Y') }}
-                </p>
-
-                     <img class="w-full rounded-md my-3" src="{{ $p->getImageUrl() }}">
-
-                <p class="mx-4">{{ $p->description }}</p>
-
-                <div class="flex flex-col items-center mt-7">
-                    <flux:button variant='primary' class="flux-button-web" href="{{ route('web.show', $p->slug) }}"> 
-                        {{ __('Show') }} 
-                    </flux:button>
-                </div> {{-- Close the button container --}}
-
-                <hr class="my-16">
-            @endforeach
-        </div>
+    <div class="grid gap-6">
+        @forelse ($posts as $post)
+            <flux:card class="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div class="aspect-video w-full overflow-hidden">
+                    <img 
+                        src="{{ $post->getImageUrl() }}" 
+                        alt="{{ $post->title }}"
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    >
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <flux:badge color="zinc">{{ $post->type }}</flux:badge>
+                        <flux:badge color="purple" variant="filled">{{ $post->category?->title }}</flux:badge>
+                        <flux:text class="text-sm text-zinc-500">
+                            {{ $post->date->format('d/m/Y') }}
+                        </flux:text>
+                    </div>
+                    <flux:heading level="2">{{ $post->title }}</flux:heading>
+                    <flux:text>{{ $post->description }}</flux:text>
+                    <div class="flex justify-end">
+                        <flux:button variant="primary" href="{{ route('web.show', $post->slug) }}" icon="arrow-right">
+                            {{ __('Leer más') }}
+                        </flux:button>
+                    </div>
+                </div>
+            </flux:card>
+        @empty
+            <flux:card>
+                <flux:text class="text-center text-zinc-500 py-8">
+                    No se encontraron posts
+                </flux:text>
+            </flux:card>
+        @endforelse
     </div>
-    {{ $posts->links() }}
+
+    @if ($posts->hasPages())
+        <div class="flex justify-center">
+            {{ $posts->links() }}
+        </div>
+    @endif
 </div>

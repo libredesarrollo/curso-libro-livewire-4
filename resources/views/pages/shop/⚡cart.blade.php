@@ -46,25 +46,35 @@ new #[Layout('layouts.web')] class extends Component
 };
 ?>
 
-<div>
+<div class="max-w-2xl mx-auto py-8 space-y-6">
+    <flux:heading level="1" class="text-center">Carrito de Compras</flux:heading>
+
     @if ($type == 'list')
-        {{-- Detalle/ Listado --}}
-        <h3 class="text-center text-3xl mb-4">Shopping cart</h3>
-        @foreach ($cart as $c)
-            @livewire('shop.cart-item', ['postId' => $c[0]['id']])
-        @endforeach
+        <flux:card>
+            @forelse ($cart as $c)
+                @livewire('shop.cart-item', ['postId' => $c[0]['id']])
+            @empty
+                <flux:text class="text-center text-zinc-500 py-8">
+                    Tu carrito está vacío
+                </flux:text>
+            @endforelse
+        </flux:card>
 
         {{ view('pages.shop.partials.shop-cart', ['total' => $total]) }}
     @else
-        {{-- Agregar/ Indivivual --}}
-        <div class="flex flex-row gap-2">
-            @livewire('shop.cart-item', ['postId' => $post->id])
-            <flux:button 
-                variant="primary" 
-                wire:click="$dispatch('addItemToCart', { post: {{ $post->id }} })"
-            >
-                Buy
-            </flux:button>
-        </div>
+        <flux:card>
+            <div class="flex items-center gap-4">
+                <div class="flex-1">
+                    @livewire('shop.cart-item', ['postId' => $post->id])
+                </div>
+                <flux:button 
+                    variant="primary" 
+                    wire:click="$dispatch('addItemToCart', { post: {{ $post->id }} })"
+                    icon="shopping-cart"
+                >
+                    Comprar
+                </flux:button>
+            </div>
+        </flux:card>
     @endif
 </div>

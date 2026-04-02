@@ -53,6 +53,10 @@ class Post extends Model
             return URL::asset('images/default.jpg');
         }
 
+        if (str_starts_with($this->image, 'http')) {
+            return URL::asset('images/default.jpg');
+        }
+
         return URL::asset('images/post/'.$this->image);
     }
 }

@@ -19,6 +19,7 @@ Route::middleware(['auth'])->group(function () {
 
     // BLOG DASHBOARD
     Route::group(['prefix' => 'dashboard'], function () {
+        Route::livewire('islands', 'pages::dashboard.island.index')->name('d-island-index');
         Route::group(['prefix' => 'category'], function () {
             Route::livewire('', 'pages::dashboard.category.index')->name('d-category-index');
             Route::livewire('create', 'pages::dashboard.category.save')->name('d-category-create');

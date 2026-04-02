@@ -2,7 +2,7 @@
 
 use Livewire\Component;
 
-use Livewire\Attributes\Layouts;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 
 use App\Models\Post;
@@ -30,60 +30,56 @@ new #[Layout('layouts.web')] class extends Component
 };
 ?>
 
-<div>
-    <flux:card class="mx-auto">
-        <h1 class="text-6xl">{{ $post->title }}</h1>
-
-        <p class="my-4 ml-2">
-            <span
-                class="text-sm text-gray-500 italic font-bold uppercase tracking-widest">{{ $post->date->format('d-m-Y') }}</span>
-
-            <a class="ml-4 rounded-md bg-purple-500 py-1 px-2 text-white"
-                href="{{ route('web.index', ['category_id' => $post->category->id]) }}">
-                {{ $post->category->title }}
-            </a>
-
-            <a class="ml-4 rounded-md bg-purple-500 py-1 px-2 text-white"
-                href="{{ route('web.index', ['type' => $post->type]) }}">
-                {{ $post->type }}
-            </a>
-        </p>
-
-        @if ($post->type == 'advert')
-            <div class="mycard mb-5 ms-auto block max-w-96">
-                <div class="mycard-body">
-                    @livewire('pages::shop.cart',key($key))
-                </div>
+<div class="max-w-4xl mx-auto space-y-8 py-8">
+    <flux:card class="overflow-hidden">
+        <div class="aspect-video w-full overflow-hidden">
+            <img 
+                src="{{ $post->getImageUrl() }}" 
+                alt="{{ $post->title }}"
+                class="w-full h-full object-cover"
+            >
+        </div>
+        
+        <div class="p-6 space-y-6">
+            <div class="flex flex-wrap items-center gap-3">
+                <flux:badge color="purple" variant="filled">{{ $post->category?->title }}</flux:badge>
+                <flux:badge color="zinc">{{ $post->type }}</flux:badge>
+                <flux:text class="text-sm text-zinc-500">
+                    {{ $post->date->format('d/m/Y') }}
+                </flux:text>
             </div>
-            {{-- @if ($isCartAddItemVisible) --}}
-            {{-- si el item esta en el carrito, removemos la opcion de agregar --}}
-            <div style="display: none;" class="overflow-auto mycard-primary mb-5 block max-w-96" x-data="{ visible: @entangle('isCartAddItemVisible') }"
-                x-show="visible" 
-                {{-- al aparecer el div, se hace un efecto de entrada --}} 
-                x-transition:enter="transition transform ease-out duration-800"
-                x-transition:enter-start="opacity-0 translate-y-5 h-0"
-                x-transition:enter-end="opacity-100 translate-y-0 h-auto" 
-                {{-- al deaparecer el div, se hace un efecto de entrada --}}
-                x-transition:leave="transition transform ease-in duration-900"
-                x-transition:leave-start="opacity-100 translate-y-0 h-auto"
-                x-transition:leave-end="opacity-0 -translate-y-5 xh-5">
-                <div class="mycard-body">
-                    <h3 class="text-center text-3xl mb-4">Add this item</h3>
-                    @livewire('pages::shop.cart', ['post' => $post, 'type' => 'add'])
+
+            <flux:heading level="1">{{ $post->title }}</flux:heading>
+
+            @if ($post->type == 'advert')
+                <div class="my-5">
+                    @livewire('pages::shop.cart', key($key))
+                    
+                    <div x-data="{ visible: @entangle('isCartAddItemVisible') }"
+                        x-show="visible"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 translate-y-4"
+                        class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4"
+                    >
+                        <flux:heading level="3" class="text-center mb-3">Añadir al carrito</flux:heading>
+                        @livewire('pages::shop.cart', ['post' => $post, 'type' => 'add'])
+                    </div>
                 </div>
+            @endif
+
+            <div class="prose dark:prose-invert max-w-none">
+                {!! $post->text !!}
             </div>
-            {{-- @endif --}}
-        @endif
 
-        <div>{!! $post->text !!}</div>
-
-        <hr class="my-8">
-
-        {{-- @livewire('contact.general', ['subject' => "#$post->id - "]) --}}
+            <div class="flex items-center gap-4 pt-4 border-t">
+                <flux:button variant="ghost" href="{{ route('web.index') }}" icon="arrow-left">
+                    {{ __('Volver al blog') }}
+                </flux:button>
+            </div>
+        </div>
     </flux:card>
-    <style>
-        .item_{{ $post->id }} ui-label {
-            color: red !important;
-        }
-    </style>
 </div>
