@@ -49,6 +49,9 @@ Route::group(['prefix' => 'blog'], function () {
     Route::livewire('/{post:slug}', 'pages::blog.show')->name('web.show');
 });
 
-
+Route::group(['prefix' => 'shop'], function () {
+    // SHOP
+    Route::livewire('/', 'pages::shop.cart')->name('shop.cart.list');
+});
 
 require __DIR__.'/settings.php';
