@@ -73,3 +73,8 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+
+.box{
+    @apply py-4 px-7 border
+}
