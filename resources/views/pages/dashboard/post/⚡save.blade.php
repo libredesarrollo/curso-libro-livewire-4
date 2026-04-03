@@ -119,7 +119,9 @@ new class extends Component {
                 <flux:label>Content</flux:label>
                 <flux:textarea wire:model="form.text" placeholder="Post content" rows="6" class="hidden!" />
                 <div wire:ignore>
-                    <div id="editor"></div>
+                    <div id="editor">
+                        {!! $this->form->text !!}
+                    </div>
                 </div>
             </flux:field>
 
