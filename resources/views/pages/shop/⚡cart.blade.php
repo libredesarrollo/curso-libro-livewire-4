@@ -2,6 +2,7 @@
 
 use Livewire\Component;
 use Livewire\Attributes\Layout;
+use Flux\Flux;
 
 use App\Models\Post;
 use App\Models\ShoppingCart;
@@ -18,20 +19,26 @@ new #[Layout('layouts.web')] class extends Component
 
     function mount(?Post $post, $type = 'list')
     {
-        // $this->initSessionCart();
-        // session(['cart' => []]); // set/delete cart
         $this->type = $type;
         $this->post = $post;
 
         $this->cart = session('cart', []);
         $this->getTotal();
-        // dd($this->cart );
     }
 
-    function addItem()
+    function addItem(Post $post)
     {
-        $this->dispatch('addItemToCart', $this->post);
-        // $this->dispatch('cartUpdated');
+        $cart = session('cart', []);
+        $cart[$post->id] = [$post->id, 'count' => 1];
+        session(['cart' => $cart]);
+
+        // Flux::toast(
+        //     heading: 'Añadido al carrito',
+        //     text: $post->title,
+        //     variant: 'success',
+        // );
+
+        $this->dispatch('itemAdd');
     }
 
    public function getTotal()
@@ -39,7 +46,6 @@ new #[Layout('layouts.web')] class extends Component
         if (auth()->check()) {
             $this->total = ShoppingCart::where('user_id', auth()->id())->sum('count');
         }
-        // 
     }
 
 

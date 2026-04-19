@@ -6,6 +6,8 @@ use Livewire\Attributes\On;
 use App\Models\Post;
 use App\Models\ShoppingCart;
 
+use Flux\Flux;
+
 new class extends Component
 {
     public int $count; // count
@@ -81,6 +83,8 @@ new class extends Component
 
         // actualziar sesion
         session(['cart' => $cart]);
+
+        Flux::toast('Your changes have been saved.');
         
         // guardar BD
         $this->saveDB($cart);

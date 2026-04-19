@@ -17,6 +17,7 @@
     </div>
     
     {{-- @livewireScripts --}}
+    <flux:toast />
 </body>
 
 </html>
