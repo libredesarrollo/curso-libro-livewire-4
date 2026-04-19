@@ -75,6 +75,8 @@ new #[Layout('layouts.web')] class extends Component
                 {!! $post->text !!}
             </div>
 
+            @livewire('pages::contact.general')
+
             <div class="flex items-center gap-4 pt-4 border-t">
                 <flux:button variant="ghost" href="{{ route('web.index') }}" icon="arrow-left">
                     {{ __('Volver al blog') }}
