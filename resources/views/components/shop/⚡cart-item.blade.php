@@ -138,7 +138,7 @@ new class extends Component
                     variant="danger" 
                     size="sm" 
                     icon="trash"
-                    wire:click="add(Post::find({{ $item['id']}}), 0)"
+                    wire:click="add({{ $item['id'] }}, 0)"
                 >
                 </flux:button>
             </div>
