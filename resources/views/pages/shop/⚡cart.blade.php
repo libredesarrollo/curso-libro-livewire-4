@@ -75,7 +75,7 @@ new #[Layout('layouts.web')] class extends Component
                 </div>
                 <flux:button 
                     variant="primary" 
-                    wire:click="$dispatch('addItemToCart', postId: {{ $post->id }})"
+                    wire:click="dispatch('addItemToCart', { post: {{ $post->id }} })"
                     icon="shopping-cart"
                 >
                     Comprar

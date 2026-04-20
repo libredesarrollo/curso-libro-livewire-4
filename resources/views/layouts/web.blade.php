@@ -18,6 +18,7 @@
     
     {{-- @livewireScripts --}}
     <flux:toast />
+    @fluxScripts
 </body>
 
 </html>

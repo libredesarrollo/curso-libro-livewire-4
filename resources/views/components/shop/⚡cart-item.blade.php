@@ -43,6 +43,8 @@ new class extends Component
         
         // dd($post);
         $cart = session('cart', []);
+
+        Flux::toast('Your changes have been saved.');
   
         // delete
         if ($count <= 0) {
@@ -84,7 +86,7 @@ new class extends Component
         // actualziar sesion
         session(['cart' => $cart]);
 
-        Flux::toast('Your changes have been saved.');
+        
         
         // guardar BD
         $this->saveDB($cart);

@@ -111,6 +111,7 @@ new class extends DataTableComponent
                             <flux:button.group>
                                 <flux:button size="sm" href="{{ route('d-category-edit', $category) }}">{{ __('Edit') }}</flux:button>
                                 {{-- <flux:button size="sm" variant="danger" onclick="confirm('{{ __('Are you sure?') }}') || event.stopImmediatePropagation()" wire:click='delete({{ $category }})'>{{ __('Delete') }}</flux:button> --}}
+                                <flux:button size="sm" variant="danger" wire:confirm.prompt="{{ __('Are you sure?') }}\n\nType DELETE to confirm|DELETE" wire:click='delete({{ $category }})'>{{ __('Delete') }}</flux:button>
                                 <flux:button size="sm" variant="danger"  wire:click='seletedCategoryToDelete({{ $category }})'>{{ __('Delete') }}</flux:button>
                             </flux:button.group>
                         </flux:table.cell>
