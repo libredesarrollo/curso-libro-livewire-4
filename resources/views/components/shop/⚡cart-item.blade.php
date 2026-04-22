@@ -45,6 +45,12 @@ new class extends Component
         $cart = session('cart', []);
 
         Flux::toast('Your changes have been saved.');
+
+        // Flux::toast(
+        //     heading: 'Añadido al carrito',
+        //     text: $post->title,
+        //     variant: 'success',
+        // );
   
         // delete
         if ($count <= 0) {

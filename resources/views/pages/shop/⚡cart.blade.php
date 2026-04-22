@@ -32,12 +32,6 @@ new #[Layout('layouts.web')] class extends Component
         $cart[$post->id] = [$post->id, 'count' => 1];
         session(['cart' => $cart]);
 
-        // Flux::toast(
-        //     heading: 'Añadido al carrito',
-        //     text: $post->title,
-        //     variant: 'success',
-        // );
-
         $this->dispatch('itemAdd');
     }
 
