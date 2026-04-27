@@ -42,6 +42,7 @@ abstract class BaseForm extends Component
         $this->setParentId($parentId);
     }
 
+    // No funciona porque sus hijos no estan renderizados por el @if/blade
     #[On('parentId')]
     public function setParentId(int $parentId): void
     {
