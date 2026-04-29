@@ -44,6 +44,13 @@ Route::middleware(['auth'])->group(function () {
 Route::livewire('contact', 'pages::contact.general')->name('general');
 Route::livewire('contact/{id}', 'pages::contact.general')->name('contact-edit');
 
+// IA
+Route::livewire('/stream/count-down', 'pages::stream.count-down');
+Route::livewire('/chat', 'pages::ia.chat');
+
+// DEMO
+Route::livewire('/demo/loading', 'pages::demo.loading-demo')->name('demo.loading');
+
 Route::group(['prefix' => 'blog'], function () {
     // BLOG
     Route::livewire('/', 'pages::blog.index')->name('web.index');
