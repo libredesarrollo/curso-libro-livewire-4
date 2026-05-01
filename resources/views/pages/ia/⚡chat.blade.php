@@ -22,6 +22,7 @@ new class extends Component {
         $fullResponse = '';
 
         foreach ($stream as $event) {
+            // dd($event);
             if ($event instanceof TextDelta) {
                 $fullResponse .= $event->delta;
                 $this->stream(to: 'streamedResponse', content: $event->delta);
@@ -29,6 +30,7 @@ new class extends Component {
         }
 
         $this->messages[] = ['role' => 'assistant', 'content' => $fullResponse];
+        //dd($this->messages);
     }
 }
 
