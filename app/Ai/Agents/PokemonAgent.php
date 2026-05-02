@@ -36,7 +36,8 @@ class PokemonAgent implements Agent // , HasStructuredOutput
 
     public function instructions(): Stringable|string
     {
-        return 'Eres un experto en Pokemon. Generas listas de Pokemon realistas en formato JSON exacto.';
+        return 'Eres un experto en Pokemon. Generas listas de Pokemon realistas.';
+        // return 'Eres un experto en Pokemon. Generas listas de Pokemon realistas en formato JSON exacto.';
     }
 
     // public function schema(JsonSchema $schema): array
