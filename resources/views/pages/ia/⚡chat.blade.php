@@ -4,8 +4,12 @@ use App\Ai\Agents\PokemonAgent;
 use Laravel\Ai\Streaming\Events\TextDelta;
 use Livewire\Component;
 
-new class extends Component {
+use Livewire\Attributes\Layout;
+
+new #[Layout('layouts.web')] class extends Component
+{
     public string $question = '';
+
     public array $messages = [];
 
     public function ask(): void
@@ -30,20 +34,20 @@ new class extends Component {
         }
 
         $this->messages[] = ['role' => 'assistant', 'content' => $fullResponse];
-        //dd($this->messages);
+        // dd($this->messages);
     }
 }
 
 ?>
 
 <div class="max-w-2xl mx-auto p-6" x-data="{ pendingQuestion: '' }">
-    <h1 class="text-2xl font-bold mb-6">SPA Assistant</h1>
+    <h1 class="text-2xl font-bold mb-6">Pokémon Assistant</h1>
 
     <div class="space-y-4 mb-6">
         @foreach($messages as $message)
             <div>
                 <strong>
-                    {{ $message['role'] === 'user' ? 'You' : 'SPA Assistant' }}:
+                    {{ $message['role'] === 'user' ? 'You' : 'Pokémon Assistant' }}:
                 </strong>
                 <p>{!! Str::markdown($message['content']) !!}</p>
             </div>
@@ -55,7 +59,7 @@ new class extends Component {
                 <p x-text="pendingQuestion"></p>
             </div>
             <div>
-                <strong>SPA Assistant:</strong>
+                <strong>Pokémon Assistant:</strong>
                 <p>
                     <span wire:stream="streamedResponse"></span>
                     <span class="thinking">Thinking...</span>
@@ -69,7 +73,7 @@ new class extends Component {
         <input x-ref="q"
                type="text"
                wire:model="question"
-               placeholder="Ask about the agreement..."
+               placeholder="Ask about Pokémon types, evolution, abilities..."
                wire:loading.attr="disabled"
                wire:target="ask"
                class="w-full border rounded-lg px-4 py-2 mb-2">
