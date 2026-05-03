@@ -1,9 +1,9 @@
 <?php
 
-use App\Ai\Agents\PokemonAgent;
+use App\Ai\Agents\PokemonAgentSimple;
 use Laravel\Ai\Streaming\Events\TextDelta;
 use Livewire\Component;
-
+// este es un chat con un agente SENCILLO sin RAG
 new class extends Component {
     public string $question = '';
     public array $messages = [];
@@ -18,7 +18,7 @@ new class extends Component {
         $question = $this->question;
         $this->question = '';
 
-        $stream = PokemonAgent::make()->stream($question);
+        $stream = PokemonAgentSimple::make()->stream($question);
         $fullResponse = '';
 
         foreach ($stream as $event) {

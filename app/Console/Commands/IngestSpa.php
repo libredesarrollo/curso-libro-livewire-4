@@ -12,6 +12,8 @@ use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Parser\MarkdownParser;
 use Symfony\Component\Finder\Finder;
 
+// este ejemplo fue obtenido de
+// https://ai.sulat.com/build-a-legal-document-chatbot-with-laravels-new-ai-sdk-e51d3ba74b19
 class IngestSpa extends Command
 {
     protected $signature = 'rag:ingest {path}';
@@ -27,6 +29,10 @@ class IngestSpa extends Command
             ->name('*.md')
             ->in($this->argument('path'));
 
+        // No falla porque el nombre del modelo solo se usa para contar palabras localmente. 
+        // Sin embargo, para la parte de Embeddings::generate(), 
+        // sí necesitas tener configurado un proveedor de IA en tu archivo .env, 
+        // de lo contrario, esa línea sí que daría error al intentar conectar con el servidor.
         $tokenizer = TikTokenizer::forModel('text-embedding-3-small');
 
         foreach ($files as $file) {

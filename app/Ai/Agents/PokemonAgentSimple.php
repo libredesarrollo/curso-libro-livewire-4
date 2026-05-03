@@ -23,7 +23,7 @@ use Stringable;
 // php artisan make:agent SimpleAgent --structured
 // #[Provider(Lab::Anthropic)]
 #[Model('gemma-3-12b-it-IQ4_XS')]
-class PokemonAgent implements Agent // , HasStructuredOutput
+class PokemonAgentSimple implements Agent // , HasStructuredOutput
 {
     use Promptable;
 

@@ -6,6 +6,7 @@ use Livewire\Component;
 
 use Livewire\Attributes\Layout;
 
+// Mismo chat de antes pero el Agente lee el RAG
 new #[Layout('layouts.web')] class extends Component
 {
     public string $question = '';

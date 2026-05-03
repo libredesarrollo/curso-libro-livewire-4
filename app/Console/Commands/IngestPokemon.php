@@ -50,10 +50,6 @@ class IngestPokemon extends Command
         // Leer todo el contenido del archivo markdown
         $markdown = file_get_contents($filePath);
 
-        // Converter de Markdown (no se usa directamente, pero está disponible)
-        $converter = new CommonMarkConverter;
-        $document = $converter->convert($markdown);
-
         // Dividir el markdown en chunks basándose en los encabezados
         $chunks = $this->chunkByHeadings($markdown);
 
@@ -146,3 +142,4 @@ class IngestPokemon extends Command
         return $chunks;
     }
 }
+// php artisan rag:ingest:pokemon 
