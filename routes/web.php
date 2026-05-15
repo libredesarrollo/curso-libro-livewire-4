@@ -46,6 +46,9 @@ Route::livewire('contact/{id}', 'pages::contact.general')->name('contact-edit');
 
 // IA
 Route::livewire('/stream/count-down', 'pages::stream.count-down');
+
+// Teleport ejemplo
+Route::livewire('/teleport-example', 'pages::examples.teleport-modal')->name('teleport-example');
 Route::livewire('/chat', 'pages::ia.chat');
 
 // DEMO

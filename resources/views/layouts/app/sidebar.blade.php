@@ -102,5 +102,8 @@
         {{ $slot }}
 
         @fluxScripts
+        <footer>
+            footer
+        </footer>
     </body>
 </html>
