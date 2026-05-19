@@ -82,3 +82,8 @@ select:focus[data-flux-control] {
 .box{
     @apply py-4 px-7 border
 }
+
+/* What gets served */
+[wire\:name="teleport"] {
+    .btn { background: blue; margin: 60px;}
+}

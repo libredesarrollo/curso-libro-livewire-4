@@ -19,12 +19,14 @@ new class extends Component
 ?>
 
 <div>
-<div class="p-8">
+<div class="p-8" wire:name="teleport">
     <flux:heading size="xl" class="mb-4">Ejemplo simple de x-teleport</flux:heading>
 
     <flux:text class="mb-4">
         El contenido teleportado aparece al final del body, NO donde se define aquí.
     </flux:text>
+
+    <button class="btn" >asas</button>
 
     <flux:button wire:click="openModal" variant="primary">
         Abrir modal teleportado
