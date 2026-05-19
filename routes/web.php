@@ -54,6 +54,7 @@ Route::livewire('/chat', 'pages::ia.chat');
 // DEMO
 Route::livewire('/demo/loading', 'pages::demo.loading-demo')->name('demo.loading');
 Route::livewire('/demo/data-loading', 'pages::demo.loading-demo-dataloading')->name('demo.data-loading');
+Route::livewire('/demo/lazy', 'pages::demo.lazy-demo')->name('demo.lazy');
 
 Route::group(['prefix' => 'blog'], function () {
     // BLOG
