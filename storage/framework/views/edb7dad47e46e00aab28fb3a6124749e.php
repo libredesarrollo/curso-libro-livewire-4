@@ -1,10 +1,5 @@
 <?php
-
 use Livewire\Component;
-
-new class extends Component {
-    // Parent component wrapper
-};
 ?>
 
 <div class="p-6 max-w-4xl mx-auto space-y-6">
@@ -88,7 +83,32 @@ new class extends Component {
                 <!-- 1. Lazy Loading (ACTIVO) -->
                 <div>
 
-                    <livewire:pages::demo.lazy-child lazy />
+                    <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('pages::demo.lazy-child', ['lazy' => true]);
+
+$__keyOuter = $__key ?? null;
+
+$__key = null;
+$__componentSlots = [];
+
+$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-1862990586-0', $__key);
+
+$__html = app('livewire')->mount($__name, $__params, $__key, $__componentSlots);
+
+echo $__html;
+
+unset($__html);
+unset($__key);
+$__key = $__keyOuter;
+unset($__keyOuter);
+unset($__name);
+unset($__params);
+unset($__componentSlots);
+unset($__split);
+?>
                 </div>
 
                 <!-- 2. Defer Loading (COMENTADO - EL OTRO NO)
@@ -98,10 +118,35 @@ new class extends Component {
                 
                 <div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800">
                     <h4 class="text-sm font-semibold text-gray-500 mb-2">Deferred Component (Comentado)</h4>
-                    <livewire:pages::demo.lazy-child defer />
+                    <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('pages::demo.lazy-child', ['defer' => true]);
+
+$__keyOuter = $__key ?? null;
+
+$__key = null;
+$__componentSlots = [];
+
+$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-1862990586-1', $__key);
+
+$__html = app('livewire')->mount($__name, $__params, $__key, $__componentSlots);
+
+echo $__html;
+
+unset($__html);
+unset($__key);
+$__key = $__keyOuter;
+unset($__keyOuter);
+unset($__name);
+unset($__params);
+unset($__componentSlots);
+unset($__split);
+?>
                 </div>
                 -->
             </div>
         </div>
     </div>
-</div>
+</div><?php /**PATH C:\Users\andre\Herd\livewirestore\storage\framework/views/livewire/views/2e13815e.blade.php ENDPATH**/ ?>

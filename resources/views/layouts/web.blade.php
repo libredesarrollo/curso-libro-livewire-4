@@ -15,7 +15,7 @@
     <div class="container mx-auto">
         {{ $slot }}
     </div>
-    
+
     {{-- @livewireScripts --}}
     <flux:toast />
     @fluxScripts
