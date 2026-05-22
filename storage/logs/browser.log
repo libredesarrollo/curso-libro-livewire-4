@@ -6,3 +6,189 @@
 [2026-05-19 18:22:55] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/andress-team/dashboard","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-19T18:22:55.404Z"} 
 [2026-05-19 18:22:55] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/demo/lazy","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-19T18:22:55.404Z"} 
 [2026-05-20 15:34:04] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/demo/lazy","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-20T13:04:57.153Z"} 
+[2026-05-22 17:45:56] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/blog/nostrum-aut-eaque-voluptatem-est","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T17:45:55.321Z"} 
+[2026-05-22 17:46:35] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/blog/nostrum-aut-eaque-voluptatem-est","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T17:46:34.957Z"} 
+[2026-05-22 17:47:05] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/blog/nostrum-aut-eaque-voluptatem-est","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T17:47:04.888Z"} 
+[2026-05-22 17:47:05] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/blog/nostrum-aut-eaque-voluptatem-est","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T17:47:04.888Z"} 
+[2026-05-22 18:13:14] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/blog/harum-quaerat-tempore-at-iusto-consequatur","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T18:13:13.939Z"} 
+[2026-05-22 18:13:14] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/blog/harum-quaerat-tempore-at-iusto-consequatur","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T18:13:13.939Z"} 
+[2026-05-22 18:30:29] local.WARNING: Alpine Expression Error: Invalid or unexpected token
+
+Expression: ""[attribute](e) {
+        directive3.eventContext = e;
+        directive3.wire = component.$wire;
+        let execute = () => {
+          callAndClearComponentDebounces(component, () => {
+            if (directive3.value === "submit") {
+              let submitButton = e.submitter || el.querySelector('button[type="submit"], input[type="submit"]');
+              setNextActionOrigin({ el, directive: directive3, targetEl: submitButton });
+            } else {
+              setNextActionOrigin({ el, directive: directive3 });
+            }
+            let livewireOptions = e.detail?.livewire;
+            if (livewireOptions?.interceptAction) {
+              setNextActionInterceptor(livewireOptions.interceptAction);
+            }
+            let expression = directive3.expression;
+            if (livewireOptions?.defaultParams !== void 0 && !expression.includes("(")) {
+              let params = Array.isArray(livewireOptions.defaultParams) ? livewireOptions.defaultParams : [livewireOptions.defaultParams];
+              expression = expression + "(" + params.map((p) => JSON.stringify(p)).join(", ") + ")";
+            }
+            evaluateActionExpression(el, expression, { scope: { $event: e } });
+          });
+        };
+        if (el.__livewire_confirm) {
+          el.__livewire_confirm(() => {
+            execute();
+          }, () => {
+            e.stopImmediatePropagation();
+          });
+        } else {
+          execute();
+        }
+      }"" aria-labelledby null null 26 35 36 37 aria-labelledby null 34 aria-labelledby null 41 42 null null null null "[attribute](e) {
+        directive3.eventContext = e;
+        directive3.wire = component.$wire;
+        let execute = () => {
+          callAndClearComponentDebounces(component, () => {
+            if (directive3.value === "submit") {
+              let submitButton = e.submitter || el.querySelector('button[type="submit"], input[type="submit"]');
+              setNextActionOrigin({ el, directive: directive3, targetEl: submitButton });
+            } else {
+              setNextActionOrigin({ el, directive: directive3 });
+            }
+            let livewireOptions = e.detail?.livewire;
+            if (livewireOptions?.interceptAction) {
+              setNextActionInterceptor(livewireOptions.interceptAction);
+            }
+            let expression = directive3.expression;
+            if (livewireOptions?.defaultParams !== void 0 && !expression.includes("(")) {
+              let params = Array.isArray(livewireOptions.defaultParams) ? livewireOptions.defaultParams : [livewireOptions.defaultParams];
+              expression = expression + "(" + params.map((p) => JSON.stringify(p)).join(", ") + ")";
+            }
+            evaluateActionExpression(el, expression, { scope: { $event: e } });
+          });
+        };
+        if (el.__livewire_confirm) {
+          el.__livewire_confirm(() => {
+            execute();
+          }, () => {
+            e.stopImmediatePropagation();
+          });
+        } else {
+          execute();
+        }
+      }" false 21 null null {"url":"http://livewirestore.test/blog/et-ea-dolore-neque","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T18:30:29.040Z"} 
+[2026-05-22 18:30:29] local.ERROR: Uncaught SyntaxError: Invalid or unexpected token http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0 1438 21 SyntaxError Invalid or unexpected token SyntaxError: Invalid or unexpected token
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1438:21)
+    at generateFunctionFromString (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1451:16)
+    at generateEvaluatorFromString (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1456:16)
+    at normalEvaluator (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1414:111)
+    at evaluateLater (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1400:12)
+    at handler2 (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:3911:22)
+    at flushHandlers (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1580:48)
+    at stopDeferring (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1585:7)
+    at deferHandlingDirectives (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1588:5) {"url":"http://livewirestore.test/blog/et-ea-dolore-neque","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T18:30:29.060Z"} 
+[2026-05-22 18:30:29] local.ERROR: Uncaught SyntaxError: Invalid or unexpected token http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0 1438 21 SyntaxError Invalid or unexpected token SyntaxError: Invalid or unexpected token
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1438:21)
+    at generateFunctionFromString (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1451:16)
+    at generateEvaluatorFromString (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1456:16)
+    at normalEvaluator (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1414:111)
+    at evaluateLater (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1400:12)
+    at handler2 (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:3911:22)
+    at flushHandlers (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1580:48)
+    at stopDeferring (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1585:7)
+    at deferHandlingDirectives (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1588:5) {"url":"http://livewirestore.test/blog/et-ea-dolore-neque","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T18:30:29.060Z"} 
+[2026-05-22 18:30:33] local.WARNING: Alpine Expression Error: Invalid or unexpected token
+
+Expression: ""[attribute](e) {
+        directive3.eventContext = e;
+        directive3.wire = component.$wire;
+        let execute = () => {
+          callAndClearComponentDebounces(component, () => {
+            if (directive3.value === "submit") {
+              let submitButton = e.submitter || el.querySelector('button[type="submit"], input[type="submit"]');
+              setNextActionOrigin({ el, directive: directive3, targetEl: submitButton });
+            } else {
+              setNextActionOrigin({ el, directive: directive3 });
+            }
+            let livewireOptions = e.detail?.livewire;
+            if (livewireOptions?.interceptAction) {
+              setNextActionInterceptor(livewireOptions.interceptAction);
+            }
+            let expression = directive3.expression;
+            if (livewireOptions?.defaultParams !== void 0 && !expression.includes("(")) {
+              let params = Array.isArray(livewireOptions.defaultParams) ? livewireOptions.defaultParams : [livewireOptions.defaultParams];
+              expression = expression + "(" + params.map((p) => JSON.stringify(p)).join(", ") + ")";
+            }
+            evaluateActionExpression(el, expression, { scope: { $event: e } });
+          });
+        };
+        if (el.__livewire_confirm) {
+          el.__livewire_confirm(() => {
+            execute();
+          }, () => {
+            e.stopImmediatePropagation();
+          });
+        } else {
+          execute();
+        }
+      }"" null null 81 90 91 92 null 89 null 96 97 null null null null "[attribute](e) {
+        directive3.eventContext = e;
+        directive3.wire = component.$wire;
+        let execute = () => {
+          callAndClearComponentDebounces(component, () => {
+            if (directive3.value === "submit") {
+              let submitButton = e.submitter || el.querySelector('button[type="submit"], input[type="submit"]');
+              setNextActionOrigin({ el, directive: directive3, targetEl: submitButton });
+            } else {
+              setNextActionOrigin({ el, directive: directive3 });
+            }
+            let livewireOptions = e.detail?.livewire;
+            if (livewireOptions?.interceptAction) {
+              setNextActionInterceptor(livewireOptions.interceptAction);
+            }
+            let expression = directive3.expression;
+            if (livewireOptions?.defaultParams !== void 0 && !expression.includes("(")) {
+              let params = Array.isArray(livewireOptions.defaultParams) ? livewireOptions.defaultParams : [livewireOptions.defaultParams];
+              expression = expression + "(" + params.map((p) => JSON.stringify(p)).join(", ") + ")";
+            }
+            evaluateActionExpression(el, expression, { scope: { $event: e } });
+          });
+        };
+        if (el.__livewire_confirm) {
+          el.__livewire_confirm(() => {
+            execute();
+          }, () => {
+            e.stopImmediatePropagation();
+          });
+        } else {
+          execute();
+        }
+      }" false 76 null null {"url":"http://livewirestore.test/contact/1","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T18:30:33.008Z"} 
+[2026-05-22 18:30:33] local.ERROR: Uncaught SyntaxError: Invalid or unexpected token http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0 1383 7 SyntaxError Invalid or unexpected token SyntaxError: Invalid or unexpected token
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1438:21)
+    at generateFunctionFromString (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1451:16)
+    at generateEvaluatorFromString (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1456:16)
+    at normalEvaluator (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1414:111)
+    at evaluateLater (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1400:12)
+    at handler2 (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:3911:22)
+    at flushHandlers (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1580:48)
+    at stopDeferring (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1585:7)
+    at deferHandlingDirectives (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1588:5) {"url":"http://livewirestore.test/contact/1","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T18:30:33.010Z"} 
+[2026-05-22 18:30:33] local.ERROR: Uncaught SyntaxError: Invalid or unexpected token http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0 1383 7 SyntaxError Invalid or unexpected token SyntaxError: Invalid or unexpected token
+    at new AsyncFunction (<anonymous>)
+    at safeAsyncFunction (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1438:21)
+    at generateFunctionFromString (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1451:16)
+    at generateEvaluatorFromString (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1456:16)
+    at normalEvaluator (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1414:111)
+    at evaluateLater (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1400:12)
+    at handler2 (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:3911:22)
+    at flushHandlers (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1580:48)
+    at stopDeferring (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1585:7)
+    at deferHandlingDirectives (http://livewirestore.test/livewire-53353050/livewire.js?id=1c586ae0:1588:5) {"url":"http://livewirestore.test/contact/1","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T18:30:33.010Z"} 
+[2026-05-22 18:33:54] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/contact/1","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T18:33:53.614Z"} 
+[2026-05-22 18:33:54] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/blog/et-ea-dolore-neque","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-22T18:33:53.614Z"} 

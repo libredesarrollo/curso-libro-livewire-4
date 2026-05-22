@@ -10,8 +10,7 @@ use App\Livewire\Dashboard\DataTableComponent;
 use App\Models\Post;
 use App\Models\Category;
 
-new #[Layout('layouts.web')] class extends DataTableComponent
-{
+new #[Layout('layouts.web')] class extends DataTableComponent {
     #[URL]
     public ?string $search = null;
 
@@ -53,7 +52,7 @@ new #[Layout('layouts.web')] class extends DataTableComponent
     {
         $posts = Post::with('category')
             ->filterDataTable($this->getAllFilters())
-            ->where('posted','yes')
+            ->where('posted', 'yes')
             ->paginate(10);
 
         $categories = Category::orderBy('title')->pluck('title', 'id');
@@ -71,11 +70,7 @@ new #[Layout('layouts.web')] class extends DataTableComponent
 
     <flux:card>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <flux:input 
-                wire:model.live.debounce.500ms="search" 
-                placeholder="Buscar posts..." 
-                icon="magnifying-glass"
-            />
+            <flux:input wire:model.live.debounce.500ms="search" placeholder="Buscar posts..." icon="magnifying-glass" />
             <flux:select wire:model.live="type" placeholder="Todos los tipos">
                 <option value="advert">Advert</option>
                 <option value="post">Post</option>
@@ -103,11 +98,8 @@ new #[Layout('layouts.web')] class extends DataTableComponent
         @forelse ($posts as $post)
             <flux:card class="overflow-hidden hover:shadow-lg transition-shadow duration-300">
                 <div class="aspect-video w-full overflow-hidden">
-                    <img 
-                        src="{{ $post->getImageUrl() }}" 
-                        alt="{{ $post->title }}"
-                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    >
+                    <img src="{{ $post->getImageUrl() }}" alt="{{ $post->title }}"
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                 </div>
                 <div class="p-6 space-y-4">
                     <div class="flex flex-wrap items-center gap-2">

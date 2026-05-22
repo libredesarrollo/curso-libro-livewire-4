@@ -52,11 +52,11 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 .ck-content {
-    @apply dark:bg-gray-900!
+    @apply dark:bg-gray-900
 }
 
 input:focus[data-flux-control],
@@ -69,9 +69,11 @@ select:focus[data-flux-control] {
 .step {
     @apply font-medium px-6 py-2 border-b-2 tracking-wider
 }
+
 .active {
     @apply border-indigo-500 rounded-t bg-gray-100 dark:bg-gray-800
 }
+
 /* form step */
 
 /* \[:where(&)\]:size-4 {
@@ -79,11 +81,34 @@ select:focus[data-flux-control] {
 } */
 
 
-.box{
+.box {
     @apply py-4 px-7 border
 }
 
-/* What gets served */
-[wire\:name="teleport"] {
-    .btn { background: blue; margin: 60px;}
+
+
+@layer base {
+    @view-transition {
+        navigation: auto;
+    }
+
+    ::view-transition-old(step) {
+        animation: 300ms ease-out both slide-out;
+    }
+
+    ::view-transition-new(step) {
+        animation: 300ms ease-in both slide-in;
+    }
+
+    @keyframes slide-out {
+        to {
+            transform: translateX(100%);
+        }
+    }
+
+    @keyframes slide-in {
+        from {
+            transform: translateX(-100%);
+        }
+    }
 }

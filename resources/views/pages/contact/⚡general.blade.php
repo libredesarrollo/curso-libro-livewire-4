@@ -38,7 +38,7 @@ new #[Layout('layouts.contact')] class extends Component {
 
     function submit()
     {
-        
+
         // return $this->dispatch('parentId',parentId:5); // No funciona porque sus hijos no estan renderizados por el @if/blade
         $data = $this->validate();
 
@@ -67,13 +67,13 @@ new #[Layout('layouts.contact')] class extends Component {
             $this->message = $this->contactGeneral->message;
             $this->type = $this->contactGeneral->type;
 
-            
+
             if ($this->type == 'company') {
                 $this->step = 2;
             } else if ($this->type == 'person') {
                 $this->step = 2.5;
             }
-        
+
         }
     }
 };
@@ -81,8 +81,10 @@ new #[Layout('layouts.contact')] class extends Component {
 
 <div class="space-y-6">
     <div class="flex items-center justify-between">
-        {{-- <flux:heading level="1">{{ $contactGeneral ? __('Edit ContactGeneral') : __('New ContactGeneral') }}</flux:heading> --}}
-        {{-- <flux:button href="{{ route('d-contactGeneral-index') }}" variant="ghost">{{ __('Back') }}</flux:button> --}}
+        {{-- <flux:heading level="1">{{ $contactGeneral ? __('Edit ContactGeneral') : __('New ContactGeneral') }}
+        </flux:heading> --}}
+        {{-- <flux:button href="{{ route('d-contactGeneral-index') }}" variant="ghost">{{ __('Back') }}</flux:button>
+        --}}
     </div>
 
     <x-action-message on="created">
@@ -107,7 +109,7 @@ new #[Layout('layouts.contact')] class extends Component {
     </div>
 
     @if ($step == 1)
-        <form wire:submit.prevent="submit" class="space-y-6">
+        <form wire:submit.prevent="submit" class="space-y-6" wire:transition="step">
             <flux:card>
                 <flux:field>
                     <flux:label>Title</flux:label>
@@ -136,12 +138,13 @@ new #[Layout('layouts.contact')] class extends Component {
             <flux:button type="submit" variant="primary" class="w-full">{{ __('Save') }}</flux:button>
         </form>
     @elseif ($step == 2)
-        <livewire:contact.company :parent-id="$contactGeneral->id" />
+        <livewire:contact.company wire:transition="step" :parent-id="$contactGeneral->id" />
     @elseif ($step == 2.5)
-        <livewire:contact.person :parent-id="$contactGeneral->id"/>
-        {{-- <livewire:contact.person wire:model="contactGeneral.id"/> prueba con #[Modelable] --}} 
+        <livewire:contact.person wire:transition="step" :parent-id="$contactGeneral->id" />
+        {{--
+        <livewire:contact.person wire:model="contactGeneral.id" /> prueba con #[Modelable] --}}
     @elseif ($step == 3)
-        <livewire:contact.detail :parent-id="$contactGeneral->id"/>
+        <livewire:contact.detail wire:transition="step" :parent-id="$contactGeneral->id" />
     @else
         END
     @endif
