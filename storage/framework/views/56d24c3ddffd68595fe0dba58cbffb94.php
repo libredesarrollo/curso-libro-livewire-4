@@ -1,32 +1,6 @@
 <?php
-
 use Livewire\Attributes\On;
 use Livewire\Component;
-
-new class extends Component {
-    public array $users = [
-        ['id' => 1, 'name' => 'John Doe'],
-        ['id' => 2, 'name' => 'Jane Smith'],
-        ['id' => 3, 'name' => 'Bob Johnson']
-    ];
-
-    public function refreshUsers()
-    {
-        sleep(2);
-    }
-
-    public function deleteUser(int $id)
-    {
-        sleep(2);
-        $this->users = array_filter($this->users, fn($u) => $u['id'] !== $id);
-    }
-
-    public function addUser()
-    {
-        sleep(2);
-        $this->users[] = ['id' => count($this->users) + 1, 'name' => 'Nuevo Usuario'];
-    }
-}
 ?>
 
 <div class="p-6 border rounded-lg shadow-sm bg-gray-400">
@@ -82,26 +56,27 @@ new class extends Component {
             <h4 class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Lista de usuarios</h4>
 
             <ul class="space-y-2">
-                @foreach ($users as $user)
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                     <li class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
                         wire:transition>
                         <span data-loading:opacity-50 data-loading:transition-all>
-                            {{ $user['name'] }}
+                            <?php echo e($user['name']); ?>
+
                         </span>
 
-                        <button wire:click="deleteUser({{ $user['id'] }})" wire:loading.attr="disabled"
-                            wire:target="deleteUser({{ $user['id'] }})"
+                        <button wire:click="deleteUser(<?php echo e($user['id']); ?>)" wire:loading.attr="disabled"
+                            wire:target="deleteUser(<?php echo e($user['id']); ?>)"
                             class="data-loading:opacity-50 data-loading:cursor-not-allowed bg-red-100 text-red-600 px-3 py-1 rounded-md hover:bg-red-200 disabled:opacity-50 transition">
-                            <span wire:loading wire:target="deleteUser({{ $user['id'] }})">
+                            <span wire:loading wire:target="deleteUser(<?php echo e($user['id']); ?>)">
                                 🗑️ Eliminando...
                             </span>
 
-                            <span wire:loading.remove wire:target="deleteUser({{ $user['id'] }})">
+                            <span wire:loading.remove wire:target="deleteUser(<?php echo e($user['id']); ?>)">
                                 Eliminar
                             </span>
                         </button>
                     </li>
-                @endforeach
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
             </ul>
         </div>
     </div>
@@ -139,4 +114,4 @@ new class extends Component {
             <li><code>not-data-loading:</code> → estilo cuando NO carga</li>
         </ul>
     </div>
-</div>
+</div><?php /**PATH /Users/andrescruz/Herd/livewirestore/storage/framework/views/livewire/views/61076639.blade.php ENDPATH**/ ?>
