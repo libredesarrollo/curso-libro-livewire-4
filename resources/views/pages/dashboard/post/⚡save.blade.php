@@ -30,6 +30,13 @@ new class extends Component {
         }
     }
 
+    public function with(): array
+    {
+        return [
+            'timestampActual' => time(),
+        ];
+    }
+
     function submit()
     {
         // $data = $this->validate();
@@ -66,6 +73,10 @@ new class extends Component {
         {{ __('Post updated successfully') }}
     </x-action-message>
 
+    <div wire:poll.1s>
+        Ventas totales de libros hoy: ${{ $timestampActual }}
+    </div>
+
     <form wire:submit.prevent="submit" class="space-y-6">
         <flux:card>
             <flux:field>
@@ -73,6 +84,10 @@ new class extends Component {
                 <flux:input wire:model="form.title" placeholder="Enter post title" />
                 <flux:error name="form.title" />
             </flux:field>
+            ---
+            <div wire:dirty>Unsaved ...</div> 
+            <div wire:dirty wire:target="form.title">Unsaved title...</div> 
+            <div wire:show="$dirty('form.title')">Title has been modified</div>
 
             <flux:field class="mt-4">
                 <flux:label>Slug</flux:label>

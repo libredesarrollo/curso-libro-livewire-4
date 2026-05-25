@@ -196,3 +196,142 @@ Expression: ""[attribute](e) {
 [2026-05-23 15:53:54] local.WARNING: Livewire: [wire:model="newName"] property does not exist on component: [pages::demo.loading-demo-dataloading]  {"url":"http://livewirestore.test/demo/data-loading","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-23T15:53:54.493Z"} 
 [2026-05-23 15:56:42] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/demo/data-loading","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-23T15:56:41.707Z"} 
 [2026-05-23 15:56:42] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/andress-team/dashboard","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-23T15:56:41.708Z"} 
+[2026-05-24 10:24:28] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/andress-team/dashboard","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-24T10:24:27.294Z"} 
+[2026-05-24 10:24:28] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/andress-team/dashboard","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-24T10:24:27.463Z"} 
+[2026-05-24 13:33:43] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/create","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-24T13:33:43.164Z"} 
+[2026-05-24 13:34:12] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/create","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-24T13:34:11.985Z"} 
+[2026-05-24 13:34:42] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/create","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-24T13:34:42.360Z"} 
+[2026-05-25 10:03:33] local.WARNING: Livewire: [wire:model="newName"] property does not exist on component: [pages::demo.loading-demo-dataloading]  {"url":"http://livewirestore.test/demo/data-loading","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T10:03:32.938Z"} 
+[2026-05-25 10:08:03] local.WARNING: Livewire: [wire:model="newName"] property does not exist on component: [pages::demo.loading-demo-dataloading]  {"url":"http://livewirestore.test/demo/data-loading","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T10:08:02.731Z"} 
+[2026-05-25 10:08:23] local.WARNING: Livewire: [wire:model="newName"] property does not exist on component: [pages::demo.loading-demo-dataloading]  {"url":"http://livewirestore.test/demo/data-loading","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T10:08:22.584Z"} 
+[2026-05-25 10:11:57] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/create","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T10:11:57.153Z"} 
+[2026-05-25 11:01:22] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/create","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:01:22.712Z"} 
+[2026-05-25 11:01:28] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/create","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:01:28.268Z"} 
+[2026-05-25 11:01:31] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/create","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:01:31.469Z"} 
+[2026-05-25 11:02:57] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/create","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:02:56.754Z"} 
+[2026-05-25 11:03:06] local.ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'document') http://livewirestore.test/dashboard/post/edit/50 3 51 TypeError Cannot read properties of undefined (reading 'document') TypeError: Cannot read properties of undefined (reading 'document')
+    at eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:3:51)
+    at Proxy.eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:5:14)
+    at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1514:25)
+    at Object.evaluateRaw (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1490:12)
+    at evaluateExpression (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13365:33)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13440:13
+    at Object.dontAutoEvaluateFunctions (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1390:18)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13439:26
+    at onlyIfScriptHasntBeenRunAlreadyForThisComponent (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13458:5)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13436:9 {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:03:06.446Z"} 
+[2026-05-25 11:03:06] local.ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'document') http://livewirestore.test/dashboard/post/edit/50 3 51 TypeError Cannot read properties of undefined (reading 'document') TypeError: Cannot read properties of undefined (reading 'document')
+    at eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:3:51)
+    at Proxy.eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:5:14)
+    at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1514:25)
+    at Object.evaluateRaw (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1490:12)
+    at evaluateExpression (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13365:33)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13440:13
+    at Object.dontAutoEvaluateFunctions (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1390:18)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13439:26
+    at onlyIfScriptHasntBeenRunAlreadyForThisComponent (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13458:5)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13436:9 {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:03:06.446Z"} 
+[2026-05-25 11:03:06] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:03:06.547Z"} 
+[2026-05-25 11:03:09] local.ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'document') http://livewirestore.test/dashboard/post/edit/50 3 51 TypeError Cannot read properties of undefined (reading 'document') TypeError: Cannot read properties of undefined (reading 'document')
+    at eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:3:51)
+    at Proxy.eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:5:14)
+    at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1514:25)
+    at Object.evaluateRaw (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1490:12)
+    at evaluateExpression (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13365:33)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13440:13
+    at Object.dontAutoEvaluateFunctions (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1390:18)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13439:26
+    at onlyIfScriptHasntBeenRunAlreadyForThisComponent (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13458:5)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13436:9 {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:03:09.739Z"} 
+[2026-05-25 11:03:09] local.ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'document') http://livewirestore.test/dashboard/post/edit/50 3 51 TypeError Cannot read properties of undefined (reading 'document') TypeError: Cannot read properties of undefined (reading 'document')
+    at eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:3:51)
+    at Proxy.eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:5:14)
+    at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1514:25)
+    at Object.evaluateRaw (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1490:12)
+    at evaluateExpression (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13365:33)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13440:13
+    at Object.dontAutoEvaluateFunctions (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1390:18)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13439:26
+    at onlyIfScriptHasntBeenRunAlreadyForThisComponent (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13458:5)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13436:9 {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:03:09.740Z"} 
+[2026-05-25 11:03:09] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:03:09.805Z"} 
+[2026-05-25 11:03:12] local.ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'document') http://livewirestore.test/dashboard/post/edit/50 3 51 TypeError Cannot read properties of undefined (reading 'document') TypeError: Cannot read properties of undefined (reading 'document')
+    at eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:3:51)
+    at Proxy.eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:5:14)
+    at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1514:25)
+    at Object.evaluateRaw (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1490:12)
+    at evaluateExpression (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13365:33)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13440:13
+    at Object.dontAutoEvaluateFunctions (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1390:18)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13439:26
+    at onlyIfScriptHasntBeenRunAlreadyForThisComponent (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13458:5)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13436:9 {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:03:12.328Z"} 
+[2026-05-25 11:03:12] local.ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'document') http://livewirestore.test/dashboard/post/edit/50 3 51 TypeError Cannot read properties of undefined (reading 'document') TypeError: Cannot read properties of undefined (reading 'document')
+    at eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:3:51)
+    at Proxy.eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:5:14)
+    at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1514:25)
+    at Object.evaluateRaw (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1490:12)
+    at evaluateExpression (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13365:33)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13440:13
+    at Object.dontAutoEvaluateFunctions (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1390:18)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13439:26
+    at onlyIfScriptHasntBeenRunAlreadyForThisComponent (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13458:5)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13436:9 {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:03:12.328Z"} 
+[2026-05-25 11:03:12] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:03:12.401Z"} 
+[2026-05-25 11:03:16] local.ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'document') http://livewirestore.test/dashboard/post/edit/50 3 51 TypeError Cannot read properties of undefined (reading 'document') TypeError: Cannot read properties of undefined (reading 'document')
+    at eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:3:51)
+    at Proxy.eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:5:14)
+    at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1514:25)
+    at Object.evaluateRaw (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1490:12)
+    at evaluateExpression (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13365:33)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13440:13
+    at Object.dontAutoEvaluateFunctions (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1390:18)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13439:26
+    at onlyIfScriptHasntBeenRunAlreadyForThisComponent (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13458:5)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13436:9 {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:03:15.991Z"} 
+[2026-05-25 11:03:16] local.ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'document') http://livewirestore.test/dashboard/post/edit/50 3 51 TypeError Cannot read properties of undefined (reading 'document') TypeError: Cannot read properties of undefined (reading 'document')
+    at eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:3:51)
+    at Proxy.eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:5:14)
+    at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1514:25)
+    at Object.evaluateRaw (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1490:12)
+    at evaluateExpression (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13365:33)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13440:13
+    at Object.dontAutoEvaluateFunctions (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1390:18)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13439:26
+    at onlyIfScriptHasntBeenRunAlreadyForThisComponent (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13458:5)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13436:9 {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:03:15.991Z"} 
+[2026-05-25 11:03:16] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:03:16.062Z"} 
+[2026-05-25 11:04:28] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:04:28.571Z"} 
+[2026-05-25 11:05:25] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:05:25.617Z"} 
+[2026-05-25 11:05:44] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:05:44.035Z"} 
+[2026-05-25 11:05:58] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:05:58.734Z"} 
+[2026-05-25 11:06:24] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:06:24.470Z"} 
+[2026-05-25 11:33:07] local.ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'document') null 3 51 TypeError Cannot read properties of undefined (reading 'document') TypeError: Cannot read properties of undefined (reading 'document')
+    at eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:3:51)
+    at Proxy.eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:5:14)
+    at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1514:25)
+    at Object.evaluateRaw (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1490:12)
+    at evaluateExpression (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13365:33)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13440:13
+    at Object.dontAutoEvaluateFunctions (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1390:18)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13439:26
+    at onlyIfScriptHasntBeenRunAlreadyForThisComponent (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13458:5)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13436:9 {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:33:06.806Z"} 
+[2026-05-25 11:33:07] local.ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'document') null 3 51 TypeError Cannot read properties of undefined (reading 'document') TypeError: Cannot read properties of undefined (reading 'document')
+    at eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:3:51)
+    at Proxy.eval (eval at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1510:18), <anonymous>:5:14)
+    at normalRawEvaluator (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1514:25)
+    at Object.evaluateRaw (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1490:12)
+    at evaluateExpression (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13365:33)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13440:13
+    at Object.dontAutoEvaluateFunctions (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:1390:18)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13439:26
+    at onlyIfScriptHasntBeenRunAlreadyForThisComponent (http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13458:5)
+    at http://livewirestore.test/livewire-0a5550f4/livewire.js?id=1c586ae0:13436:9 {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:33:06.806Z"} 
+[2026-05-25 11:33:07] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:33:06.939Z"} 
+[2026-05-25 11:33:12] local.WARNING: widget-toolbar-no-items image Read more: https://ckeditor.com/docs/ckeditor5/latest/support/error-codes.html#error-widget-toolbar-no-items {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:33:12.007Z"} 
+[2026-05-25 11:33:18] local.DEBUG: [vite] server connection lost. Polling for restart... {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:33:17.886Z"} 
+[2026-05-25 11:33:20] local.ERROR: ResizeObserver loop completed with undelivered notifications. http://livewirestore.test/dashboard/post/edit/50 0 0 null {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:33:20.305Z"} 
+[2026-05-25 11:33:20] local.ERROR: ResizeObserver loop completed with undelivered notifications. http://livewirestore.test/dashboard/post/edit/50 0 0 null {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:33:20.305Z"} 
+[2026-05-25 11:33:20] local.ERROR: ResizeObserver loop completed with undelivered notifications. http://livewirestore.test/dashboard/post/edit/50 0 0 null {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:33:20.533Z"} 
+[2026-05-25 11:33:20] local.ERROR: ResizeObserver loop completed with undelivered notifications. http://livewirestore.test/dashboard/post/edit/50 0 0 null {"url":"http://livewirestore.test/dashboard/post/edit/50","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36","timestamp":"2026-05-25T11:33:20.533Z"} 

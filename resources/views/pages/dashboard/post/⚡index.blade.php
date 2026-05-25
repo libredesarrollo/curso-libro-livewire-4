@@ -146,7 +146,7 @@ new class extends DataTableComponent
                         </flux:table.cell>
                         <flux:table.cell align="end">
                             <flux:button.group>
-                                <flux:button size="sm" href="{{ route('d-post-edit', $post) }}">
+                                <flux:button size="sm" href="{{ route('d-post-edit', $post) }}" wire:navigate>
                                     {{ __('Edit') }}
                                 </flux:button>
                                 <flux:button size="sm" variant="danger"
