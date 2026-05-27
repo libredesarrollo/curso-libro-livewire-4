@@ -15,6 +15,7 @@ new class extends Component {
 
     public PostForm $form;
 
+    public $showModal = false;
     public $post;
     public $categories = [];
     public $types = ['advert', 'post','course','movie'];
@@ -73,8 +74,18 @@ new class extends Component {
         {{ __('Post updated successfully') }}
     </x-action-message>
 
-    <div wire:poll.1s>
+    {{-- <div wire:poll.1s>
         Ventas totales de libros hoy: ${{ $timestampActual }}
+    </div> --}}
+
+    <button x-on:click="$wire.showModal = true">New Post (Text showModal)</button>
+ 
+    <div wire:show="showModal" x-transition.duration.500ms>
+        <form >
+            <textarea ></textarea>
+ 
+            <button type="submit">Save Post</button>
+        </form>
     </div>
 
     <form wire:submit.prevent="submit" class="space-y-6">
@@ -88,6 +99,8 @@ new class extends Component {
             <div wire:dirty>Unsaved ...</div> 
             <div wire:dirty wire:target="form.title">Unsaved title...</div> 
             <div wire:show="$dirty('form.title')">Title has been modified</div>
+
+   
 
             <flux:field class="mt-4">
                 <flux:label>Slug</flux:label>
