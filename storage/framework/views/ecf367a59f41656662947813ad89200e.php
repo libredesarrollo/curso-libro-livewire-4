@@ -6,7 +6,7 @@ use Livewire\Component;
 <div>
 
     <!-- Runs when entering viewport (default) -->
-<div style="height: 1000px" class="w-full bg-amber-500" wire:intersect:leave="leaving">
+<div style="height: 1000px" class="w-full bg-amber-500" wire:intersect:leave="leave">
      <h1 class="text-5xl font-bold mb-4"><?php echo e($text1); ?></h1>
      <h1 class="text-5xl font-bold mb-4"><?php echo e($text2); ?></h1>
 </div>
