@@ -10,12 +10,13 @@
 <?php $component->withAttributes(['title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($title ?? null)]); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
+    
 
-    <div class="w-full bg-zinc-900 p-4">
-        <?php app("livewire")->forceAssetInjection(); ?><div x-persist="<?php echo e('global-audio-player'); ?>">
-            <audio id="main-player" src="/music.mp3" controls></audio>
-        </div>
-    </div>
+    ---<div wire:offline>
+        This device is currently offline. Master
+    </div>---
+
+
 
     <?php if (isset($component)) { $__componentOriginal95c5505ccad18880318521d2bba3eac7 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal95c5505ccad18880318521d2bba3eac7 = $attributes; } ?>
@@ -28,9 +29,6 @@
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
-
-
-
 
         <?php echo e($slot); ?>
 

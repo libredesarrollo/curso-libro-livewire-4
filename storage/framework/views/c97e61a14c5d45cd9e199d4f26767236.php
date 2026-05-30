@@ -10,6 +10,7 @@ use App\Livewire\Forms\PostForm;
 ?>
 
 <div class="space-y-6">
+   
     <div class="flex items-center justify-between">
         <?php if (isset($component)) { $__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9 = $attributes; } ?>
@@ -54,7 +55,7 @@ use App\Livewire\Forms\PostForm;
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
     </div>
-
+  
     <?php if (isset($component)) { $__componentOriginala665a74688c74e9ee80d4fedd2b98434 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginala665a74688c74e9ee80d4fedd2b98434 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.action-message','data' => ['on' => 'created']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -108,6 +109,10 @@ use App\Livewire\Forms\PostForm;
         Ventas totales de libros hoy: $<?php echo e($timestampActual); ?>
 
     </div>
+
+---<div wire:offline>
+        This device is currently offline.
+    </div>---
 
     <form wire:submit.prevent="submit" class="space-y-6">
         <?php if (isset($component)) { $__componentOriginalc4bce27d2c09d2f98a63d67977c1c3ec = $component; } ?>

@@ -7,7 +7,6 @@ use Livewire\Attributes\Validate;
 use App\Models\Category;
 
 new class extends Component {
-
     use WithFileUploads;
 
     #[Validate('required|min:2|max:255')]
@@ -33,29 +32,29 @@ new class extends Component {
 
     function submit()
     {
-        if($this->category){
+        if ($this->category) {
             $this->category->update($this->validate());
-            $this->dispatch("updated");
-        }else{
+            $this->dispatch('updated');
+        } else {
             $this->category = Category::create($this->validate());
-            $this->dispatch("created");
+            $this->dispatch('created');
         }
-        
-        if($this->image){
-            if($this->category->image){
-                Storage::disk('public_upload')
-                    ->delete('images/category/'.$this->category->image);
+
+        if ($this->image) {
+            if ($this->category->image) {
+                Storage::disk('public_upload')->delete('images/category/' . $this->category->image);
             }
-            $imageName = $this->category->slug . '.'.$this->image->getClientOriginalExtension();
-            $this->image->storeAs('images/category',$imageName,'public_upload');
+            $imageName = $this->category->slug . '.' . $this->image->getClientOriginalExtension();
+            $this->image->storeAs('images/category', $imageName, 'public_upload');
             $this->category->update([
-                'image' => $imageName
+                'image' => $imageName,
             ]);
         }
     }
 
-    function mount(?int $id = null){
-        if($id){
+    function mount(?int $id = null)
+    {
+        if ($id) {
             $this->category = Category::findOrFail($id);
             $this->title = $this->category->title;
             $this->slug = $this->category->slug;
@@ -82,6 +81,11 @@ new class extends Component {
     </x-action-message>
 
     <form wire:submit.prevent="submit" class="space-y-6">
+
+        ---<div wire:offline>
+            This device is currently offline. Master
+        </div>---
+
         <flux:card>
             <flux:field>
                 <flux:label>Title</flux:label>
@@ -106,10 +110,11 @@ new class extends Component {
                 <flux:error name="image" />
             </flux:field>
 
-            @if($category?->image)
+            @if ($category?->image)
                 <div class="mt-4">
                     <flux:label>Current Image</flux:label>
-                    <img src="{{ asset('images/category/'.$category->image) }}" alt="" class="mt-2 h-20 w-20 rounded-lg object-cover">
+                    <img src="{{ asset('images/category/' . $category->image) }}" alt=""
+                        class="mt-2 h-20 w-20 rounded-lg object-cover">
                 </div>
             @endif
         </flux:card>

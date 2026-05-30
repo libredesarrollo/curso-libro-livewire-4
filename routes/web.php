@@ -57,6 +57,7 @@ Route::livewire('/demo/data-loading', 'pages::demo.loading-demo-dataloading')->n
 Route::livewire('/demo/lazy', 'pages::demo.lazy-demo')->name('demo.lazy');
 Route::livewire('/demo/computed', 'pages::demo.computed-demo')->name('demo.computed');
 Route::livewire('/demo/intersect', 'pages::demo.intersect')->name('demo.intersect');
+Route::livewire('/demo/wiretext', 'pages::demo.wire-text')->name('demo.wire-text');
 
 
 Route::group(['prefix' => 'blog'], function () {

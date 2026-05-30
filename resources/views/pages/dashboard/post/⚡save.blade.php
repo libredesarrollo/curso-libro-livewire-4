@@ -1,32 +1,28 @@
 <?php
 
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Livewire\Attributes\Validate;
 use App\Models\Post;
 use App\Models\Category;
-use App\Models\Tag;
 use App\Livewire\Forms\PostForm;
 
 new class extends Component {
-
     use WithFileUploads;
 
     public PostForm $form;
 
-    public $showModal = false;
     public $post;
     public $categories = [];
-    public $types = ['advert', 'post','course','movie'];
+    public $types = ['advert', 'post', 'course', 'movie'];
 
-    function mount(?int $id = null){
+    function mount(?int $id = null)
+    {
         $this->categories = Category::all()->toArray();
-        
-        if($id){
+
+        if ($id) {
             $this->post = Post::findOrFail($id);
             $this->form->setPost($this->post);
-        }else{
+        } else {
             $this->date = now()->format('Y-m-d');
         }
     }
@@ -42,26 +38,27 @@ new class extends Component {
     {
         // $data = $this->validate();
         $this->form->store();
-        if($this->post){
+        if ($this->post) {
             // $this->post->update($data);
             // si NO usas redireccion
-            $this->dispatch("updated");
-        }else{
+            $this->dispatch('updated');
+        } else {
             // $this->post = Post::create($data);
             // si NO usas redireccion
-            $this->dispatch("created");
+            $this->dispatch('created');
         }
-        
+
         // si usas redireccion
         session()->flash('status', __('Post saved successfully'));
 
-        return $this->redirectRoute('d-post-index', navigate:true);
+        return $this->redirectRoute('d-post-index', navigate: true);
         // return redirect()->route('d-post-index')->with('status', __('Post saved successfully'));
     }
 };
 ?>
 
 <div class="space-y-6">
+
     <div class="flex items-center justify-between">
         <flux:heading level="1">{{ $post ? __('Edit Post') : __('New Post') }}</flux:heading>
         <flux:button href="{{ route('d-post-index') }}" variant="ghost">{{ __('Back') }}</flux:button>
@@ -74,19 +71,13 @@ new class extends Component {
         {{ __('Post updated successfully') }}
     </x-action-message>
 
-    {{-- <div wire:poll.1s>
+    <div wire:poll.1s>
         Ventas totales de libros hoy: ${{ $timestampActual }}
-    </div> --}}
-
-    <button x-on:click="$wire.showModal = true">New Post (Text showModal)</button>
- 
-    <div wire:show="showModal" x-transition.duration.500ms>
-        <form >
-            <textarea ></textarea>
- 
-            <button type="submit">Save Post</button>
-        </form>
     </div>
+
+    ---<div wire:offline>
+        This device is currently offline.
+    </div>---
 
     <form wire:submit.prevent="submit" class="space-y-6">
         <flux:card>
@@ -96,11 +87,9 @@ new class extends Component {
                 <flux:error name="form.title" />
             </flux:field>
             ---
-            <div wire:dirty>Unsaved ...</div> 
-            <div wire:dirty wire:target="form.title">Unsaved title...</div> 
+            <div wire:dirty>Unsaved ...</div>
+            <div wire:dirty wire:target="form.title">Unsaved title...</div>
             <div wire:show="$dirty('form.title')">Title has been modified</div>
-
-   
 
             <flux:field class="mt-4">
                 <flux:label>Slug</flux:label>
@@ -117,7 +106,7 @@ new class extends Component {
             <flux:field class="mt-4">
                 <flux:label>Category</flux:label>
                 <flux:select wire:model="form.category_id" placeholder="Select a category">
-                    @foreach($categories as $category)
+                    @foreach ($categories as $category)
                         <flux:select.option value="{{ $category['id'] }}">
                             {{ $category['title'] }}
                         </flux:select.option>
@@ -129,7 +118,7 @@ new class extends Component {
             <flux:field class="mt-4">
                 <flux:label>Type</flux:label>
                 <flux:select wire:model="form.type">
-                    @foreach($types as $t)
+                    @foreach ($types as $t)
                         <flux:select.option value="{{ $t }}">
                             {{ ucfirst($t) }}
                         </flux:select.option>
@@ -159,10 +148,11 @@ new class extends Component {
                 <flux:error name="form.image" />
             </flux:field>
 
-            @if($post?->image)
+            @if ($post?->image)
                 <div class="mt-4">
                     <flux:label>Current Image</flux:label>
-                    <img src="{{ asset('images/post/'.$post->image) }}" alt="" class="mt-2 h-20 w-20 rounded-lg object-cover">
+                    <img src="{{ asset('images/post/' . $post->image) }}" alt=""
+                        class="mt-2 h-20 w-20 rounded-lg object-cover">
                 </div>
             @endif
 
@@ -174,12 +164,12 @@ new class extends Component {
 
         <flux:button type="submit" variant="primary" class="w-full">{{ __('Save') }}</flux:button>
     </form>
-     @vite(['resources/js/ckeditor.js','resources/css/ckeditor.css'])
+    @vite(['resources/js/ckeditor.js', 'resources/css/ckeditor.css'])
     @script
-    <script>
-        editor.model.document.on('change:data', () => {
-            $wire.form.text = editor.getData()
-        })
-    </script>
+        <script>
+            editor.model.document.on('change:data', () => {
+                $wire.form.text = editor.getData()
+            })
+        </script>
     @endscript
 </div>
