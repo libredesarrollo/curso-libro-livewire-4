@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::ensureVectorExtensionExists();
+        if (\Illuminate\Support\Facades\DB::getDriverName() === 'pgsql') {
+            Schema::ensureVectorExtensionExists();
+        }
 
         Schema::create('document_chunks', function (Blueprint $table) {
             $table->id();
@@ -19,8 +21,11 @@ return new class extends Migration
             $table->string('heading')->nullable();
             $table->text('chunk_text');
             $table->json('metadata')->nullable();
-            // $table->vector('embedding', dimensions: 1536)->index(); // OPENIA
-            $table->vector('embedding', dimensions: 768)->index(); // Ollama
+            if (\Illuminate\Support\Facades\DB::getDriverName() === 'pgsql') {
+                $table->vector('embedding', dimensions: 768)->index(); // Ollama
+            } else {
+                $table->text('embedding')->nullable();
+            }
             $table->timestamps();
         });
     }
