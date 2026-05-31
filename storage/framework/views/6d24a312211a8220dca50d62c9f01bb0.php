@@ -1,15 +1,9 @@
 <?php
-
 use Livewire\Component;
-
-new class extends Component
-{
-    public string $title = 'File Manager Demo';
-}
 ?>
 
 <div class="space-y-6">
-    @filemanagerStyles
+        <script src="https://cdn.tailwindcss.com"></script>
     <!-- Header/Hero section -->
     <div class="relative overflow-hidden rounded-2xl bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 p-8 text-white shadow-lg">
         <div class="relative z-10 space-y-2">
@@ -47,8 +41,33 @@ new class extends Component
         </div>
 
         <div class="min-h-[500px]">
-            <livewire:livewire-filemanager />
+            <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('livewire-filemanager', []);
+
+$__keyOuter = $__key ?? null;
+
+$__key = null;
+$__componentSlots = [];
+
+$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-814319757-0', $__key);
+
+$__html = app('livewire')->mount($__name, $__params, $__key, $__componentSlots);
+
+echo $__html;
+
+unset($__html);
+unset($__key);
+$__key = $__keyOuter;
+unset($__keyOuter);
+unset($__name);
+unset($__params);
+unset($__componentSlots);
+unset($__split);
+?>
         </div>
     </div>
-    @filemanagerScripts
-</div>
+        <script defer src="https://unpkg.com/@alpinejs/ui@3.13.3-beta.1/dist/cdn.min.js"></script>
+</div><?php /**PATH /Users/andrescruz/Herd/livewirestore/storage/framework/views/livewire/views/d24a83be.blade.php ENDPATH**/ ?>

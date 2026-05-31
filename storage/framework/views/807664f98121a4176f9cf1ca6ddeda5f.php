@@ -1,15 +1,13 @@
 <?php
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Livewire\Attributes\Validate;
 use App\Models\Post;
 use App\Models\Category;
-use App\Models\Tag;
 use App\Livewire\Forms\PostForm;
 ?>
 
 <div class="space-y-6">
+
     <div class="flex items-center justify-between">
         <?php if (isset($component)) { $__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9 = $attributes; } ?>
@@ -104,17 +102,14 @@ use App\Livewire\Forms\PostForm;
 <?php unset($__componentOriginala665a74688c74e9ee80d4fedd2b98434); ?>
 <?php endif; ?>
 
-    
+    <div wire:poll.1s>
+        Ventas totales de libros hoy: $<?php echo e($timestampActual); ?>
 
-    <button x-on:click="$wire.showModal = true">New Post (Text showModal)</button>
- 
-    <div wire:show="showModal" x-transition.duration.500ms>
-        <form >
-            <textarea ></textarea>
- 
-            <button type="submit">Save Post</button>
-        </form>
     </div>
+
+    ---<div wire:offline>
+        This device is currently offline.
+    </div>---
 
     <form wire:submit.prevent="submit" class="space-y-6">
         <?php if (isset($component)) { $__componentOriginalc4bce27d2c09d2f98a63d67977c1c3ec = $component; } ?>
@@ -217,11 +212,9 @@ Title <?php echo $__env->renderComponent(); ?>
 <?php unset($__componentOriginaldbce252eb40169cc4a74f0123aabaf0b); ?>
 <?php endif; ?>
             ---
-            <div wire:dirty>Unsaved ...</div> 
-            <div wire:dirty wire:target="form.title">Unsaved title...</div> 
+            <div wire:dirty>Unsaved ...</div>
+            <div wire:dirty wire:target="form.title">Unsaved title...</div>
             <div wire:show="$dirty('form.title')">Title has been modified</div>
-
-   
 
             <?php if (isset($component)) { $__componentOriginaldbce252eb40169cc4a74f0123aabaf0b = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginaldbce252eb40169cc4a74f0123aabaf0b = $attributes; } ?>
@@ -876,7 +869,8 @@ Current Image <?php echo $__env->renderComponent(); ?>
 <?php $component = $__componentOriginal8a84eac5abb8af1e2274971f8640b38f; ?>
 <?php unset($__componentOriginal8a84eac5abb8af1e2274971f8640b38f); ?>
 <?php endif; ?>
-                    <img src="<?php echo e(asset('images/post/'.$post->image)); ?>" alt="" class="mt-2 h-20 w-20 rounded-lg object-cover">
+                    <img src="<?php echo e(asset('images/post/' . $post->image)); ?>" alt=""
+                        class="mt-2 h-20 w-20 rounded-lg object-cover">
                 </div>
             <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
@@ -978,16 +972,16 @@ Published <?php echo $__env->renderComponent(); ?>
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
     </form>
-     <?php echo app('Illuminate\Foundation\Vite')(['resources/js/ckeditor.js','resources/css/ckeditor.css']); ?>
+    <?php echo app('Illuminate\Foundation\Vite')(['resources/js/ckeditor.js', 'resources/css/ckeditor.css']); ?>
         <?php
         $__scriptKey = '3530907180-0';
         ob_start();
     ?>
-    <script>
-        editor.model.document.on('change:data', () => {
-            $wire.form.text = editor.getData()
-        })
-    </script>
+        <script>
+            editor.model.document.on('change:data', () => {
+                $wire.form.text = editor.getData()
+            })
+        </script>
         <?php
         $__output = ob_get_clean();
 

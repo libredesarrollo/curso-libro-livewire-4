@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de la Ciencia de la Computación (CS50)</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0 auto; max-width: 900px; padding: 20px; background-color: #f4f4f4; }
+        h1, h2, h3 { color: #0056b3; }
+        pre { background-color: #eee; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { font-family: "Courier New", Courier, monospace; }
+        .example-title { font-weight: bold; margin-top: 15px; margin-bottom: 5px; color: #007bff; }
+        .note { background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 10px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Fundamentos de la Ciencia de la Computación (CS50)</h1>
+    <p>Este documento explora los conceptos fundamentales de la ciencia de la computación, desde la representación de datos hasta algoritmos y estructuras de datos, utilizando ejemplos en C.</p>
+
+    <h2>Introducción a la Ciencia de la Computación</h2>
+    <p>La ciencia de la computación es el estudio de la información: cómo representarla, procesarla y resolver problemas de manera eficiente. Se centra en el pensamiento computacional, aplicando ideas de la informática a problemas del mundo real.</p>
+    <p>Un problema se puede visualizar como una "caja negra" que toma una <strong>entrada</strong>, la procesa y produce una <strong>salida</strong>. El objetivo es diseñar el proceso intermedio para transformar la entrada en la salida deseada.</p>
+
+    <h2>Representación de Información: Bits y Bytes</h2>
+    <p>En su nivel más fundamental, las computadoras utilizan solo dos estados: encendido o apagado, representados como <strong>0s y 1s</strong>. Esta es la base del sistema binario.</p>
+    <ul>
+        <li>Un <strong>bit</strong> es un dígito binario (0 o 1).</li>
+        <li>Un <strong>byte</strong> es una unidad de ocho bits.</li>
+    </ul>
+    <p>La electricidad (flujo o ausencia de flujo) es la forma en que las computadoras representan estos 0s y 1s. Por ejemplo, una bombilla apagada puede ser un 0 y una encendida un 1.</p>
+
+    <h3>Conteo en Binario</h3>
+    <p>Podemos contar números utilizando el sistema binario, asignando pesos a cada posición, similar al sistema decimal (base 10) pero con potencias de 2 en lugar de 10.</p>
+    <pre><code>
+// Sistema Decimal (Base 10)
+// 123 = (1 * 10^2) + (2 * 10^1) + (3 * 10^0)
+//     = 100 + 20 + 3 = 123
+
+// Sistema Binario (Base 2)
+// Con 3 bits, podemos contar de 0 a 7:
+// 000 = 0
+// 001 = 1
+// 010 = 2
+// 011 = 3
+// 100 = 4
+// 101 = 5
+// 110 = 6
+// 111 = 7
+
+// Con 8 bits (un byte), podemos representar números de 0 a 255.
+// 11111111 (binario) = 255 (decimal)
+    </code></pre>
+    <p>Las computadoras modernas suelen usar 32 o 64 bits para representar números enteros, lo que permite rangos mucho mayores (aproximadamente 4 mil millones para 32 bits, o 2 mil millones si se incluyen números negativos).</p>
+
+    <h2>Representación de Caracteres: ASCII y Unicode</h2>
+    <p>Para que las computadoras almacenen letras, símbolos y otros caracteres, se les asigna un valor numérico. Esto se logra mediante estándares de codificación.</p>
+    <ul>
+        <li><strong>ASCII (American Standard Code for Information Interchange):</strong> Fue uno de los primeros estándares, asignando números a caracteres en inglés. Por ejemplo, la 'A' mayúscula es 65, 'B' es 66, etc.</li>
+        <li><strong>Unicode:</strong> Es un superconjunto de ASCII que incluye caracteres de casi todos los idiomas del mundo, así como emojis. Utiliza más bits por carácter que ASCII.</li>
+    </ul>
+
+    <h3>Ejemplo: Caracteres y sus Valores ASCII</h3>
+    <p>La relación entre mayúsculas y minúsculas en ASCII es consistente: las letras minúsculas están 32 unidades por encima de sus equivalentes mayúsculas.</p>
+    <pre><code>
+#include &lt;stdio.h&gt; // Para printf
+
+int main(void) {
+    char c1 = 'H'; // Carácter 'H'
+    char c2 = 'I'; // Carácter 'I'
+    char c3 = '!'; // Carácter '!'
+
+    // Imprimir como caracteres
+    printf("%c%c%c\n", c1, c2, c3); // Salida: HI!
+
+    // Imprimir como números (valores ASCII)
+    printf("%i %i %i\n", c1, c2, c3); // Salida: 72 73 33
+
+    // Demostración de mayúsculas/minúsculas
+    char upper_a = 'A';
+    char lower_a = 'a';
+    printf("Valor ASCII de 'A': %i\n", upper_a); // Salida: 65
+    printf("Valor ASCII de 'a': %i\n", lower_a); // Salida: 97
+    printf("Diferencia: %i\n", lower_a - upper_a); // Salida: 32
+    return 0;
+}
+    </code></pre>
+
+    <h2>Representación de Colores: RGB y Hexadecimal</h2>
+    <p>Los colores en las computadoras se representan comúnmente usando el modelo <strong>RGB</strong>, una combinación de valores para Rojo, Verde y Azul. Cada componente de color suele tener un valor entre 0 y 255.</p>
+    <p>El <strong>sistema hexadecimal (base 16)</strong> es una forma conveniente de representar estos valores. Utiliza 16 dígitos (0-9 y A-F), donde A=10, B=11, ..., F=15.</p>
+    <ul>
+        <li>Dos dígitos hexadecimales pueden representar un byte (00 a FF, que es 0 a 255 en decimal).</li>
+        <li>Los colores RGB se suelen expresar como tres pares hexadecimales (ej., #FF0000 para rojo puro).</li>
+    </ul>
+
+    <h3>Ejemplo: Colores en Hexadecimal</h3>
+    <pre><code>
+// Valores RGB en decimal (0-255)
+// Rojo: 255, Verde: 0, Azul: 0  -> Rojo puro
+// Rojo: 0, Verde: 255, Azul: 0  -> Verde puro
+// Rojo: 0, Verde: 0, Azul: 255  -> Azul puro
+// Rojo: 0, Verde: 0, Azul: 0    -> Negro
+// Rojo: 255, Verde: 255, Azul: 255 -> Blanco
+
+// Equivalencia en hexadecimal:
+// 255 (decimal) = FF (hexadecimal)
+// 0 (decimal)   = 00 (hexadecimal)
+
+// Ejemplos de colores hexadecimales:
+// #FF0000 (Rojo)
+// #00FF00 (Verde)
+// #0000FF (Azul)
+// #000000 (Negro)
+// #FFFFFF (Blanco)
+    </code></pre>
+    <p>Las imágenes se componen de <strong>píxeles</strong>, pequeños puntos, cada uno con su propio color RGB. Un archivo de imagen almacena la información de color de cada píxel.</p>
+
+    <h2>Representación de Sonido y Video</h2>
+    <ul>
+        <li><strong>Video:</strong> Es esencialmente una secuencia rápida de imágenes (fotogramas) mostradas una tras otra, creando la ilusión de movimiento.</li>
+        <li><strong>Sonido:</strong> Se representa digitalmente mediante números que describen características como la frecuencia (tono), duración y amplitud (volumen) de las ondas sonoras.</li>
+    </ul>
+    <p>En última instancia, toda la información (números, texto, imágenes, sonido, video) se reduce a patrones de 0s y 1s en la computadora.</p>
+
+    <h2>Algoritmos: La Receta para Resolver Problemas</h2>
+    <p>Un <strong>algoritmo</strong> es un conjunto de instrucciones paso a paso para resolver un problema. Es la "salsa secreta" que transforma la entrada en la salida deseada.</p>
+    <p>El <strong>pseudocódigo</strong> es una forma de describir algoritmos utilizando un lenguaje similar al humano, sin la sintaxis estricta de un lenguaje de programación. Ayuda a planificar la lógica antes de escribir el código real.</p>
+
+    <h3>Ejemplo de Pseudocódigo: Búsqueda en una Guía Telefónica</h3>
+    <pre><code>
+// Algoritmo para encontrar a una persona en una guía telefónica
+1. Levantar la guía telefónica.
+2. Abrir por la mitad.
+3. Mirar la página.
+4. SI la persona está en la página:
+    Llamar a la persona.
+5. SINO SI la persona está antes en la guía:
+    Abrir por la mitad la mitad izquierda.
+    Volver al paso 3.
+6. SINO SI la persona está después en la guía:
+    Abrir por la mitad la mitad derecha.
+    Volver al paso 3.
+7. SINO (la persona no está en la guía):
+    Colgar.
+    </code></pre>
+    <p>Este pseudocódigo ilustra un enfoque de "divide y vencerás", donde el problema se reduce a la mitad en cada paso.</p>
+
+    <h2>Conceptos Fundamentales de Programación</h2>
+    <p>Independientemente del lenguaje, la mayoría de los programas se construyen con estos bloques:</p>
+    <ul>
+        <li><strong>Funciones:</strong> Acciones o verbos que realizan una pequeña tarea (ej., <code>printf</code> para imprimir).</li>
+        <li><strong>Condicionales:</strong> Permiten tomar decisiones (<code>if</code>, <code>else if</code>, <code>else</code>) basadas en preguntas con respuestas de sí/no (expresiones booleanas).</li>
+        <li><strong>Bucles (Loops):</strong> Repiten un conjunto de instrucciones varias veces (<code>for</code>, <code>while</code>, <code>do-while</code>).</li>
+        <li><strong>Variables:</strong> Contenedores para almacenar valores (ej., números, texto).</li>
+    </ul>
+
+    <h3>Ejemplo: "Hola Mundo" en C</h3>
+    <p>El programa más simple en C:</p>
+    <pre><code>
+#include &lt;stdio.h&gt; // Incluye la biblioteca estándar de entrada/salida
+
+int main(void) {
+    printf("¡Hola, Mundo!\n"); // Imprime el mensaje
+    return 0; // Indica que el programa finalizó con éxito
+}
+    </code></pre>
+    <p><strong>Explicación:</strong></p>
+    <ul>
+        <li><code>#include &lt;stdio.h&gt;</code>: Incluye la biblioteca que contiene la función <code>printf</code>.</li>
+        <li><code>int main(void)</code>: La función principal donde comienza la ejecución del programa. <code>void</code> indica que no toma argumentos. <code>int</code> indica que devuelve un entero (código de estado).</li>
+        <li><code>printf("¡Hola, Mundo!\n");</code>: Imprime la cadena de texto. <code>\n</code> es una secuencia de escape para un salto de línea.</li>
+        <li><code>return 0;</code>: Un código de retorno de 0 generalmente significa que el programa se ejecutó sin errores.</li>
+    </ul>
+
+    <h2>Compilación y Ejecución de Código C</h2>
+    <p>Las computadoras solo entienden código máquina (0s y 1s). El <strong>compilador</strong> traduce el <strong>código fuente</strong> (lo que escribimos) a <strong>código máquina</strong>.</p>
+    <p>El proceso de compilación en C generalmente involucra cuatro pasos:</p>
+    <ol>
+        <li><strong>Preprocesamiento:</strong> El preprocesador procesa directivas como <code>#include</code>, copiando el contenido de los archivos de cabecera (<code>.h</code>) en el código fuente.</li>
+        <li><strong>Compilación:</strong> El compilador traduce el código preprocesado a <strong>código ensamblador</strong>, un lenguaje de bajo nivel específico de la CPU.</li>
+        <li><strong>Ensamblado:</strong> El ensamblador convierte el código ensamblador en <strong>código máquina</strong> (0s y 1s).</li>
+        <li><strong>Enlazado (Linking):</strong> El enlazador combina el código máquina de nuestro programa con el código máquina de las bibliotecas (ej., <code>printf</code> de <code>stdio.h</code>) para crear un programa ejecutable final.</li>
+    </ol>
+
+    <h3>Comandos Comunes en la Línea de Comandos (CLI)</h3>
+    <p>Para interactuar con el sistema y el compilador:</p>
+    <ul>
+        <li><code>ls</code>: Lista archivos y directorios.</li>
+        <li><code>mkdir [nombre]</code>: Crea un nuevo directorio.</li>
+        <li><code>rm [archivo]</code>: Elimina un archivo.</li>
+        <li><code>mv [origen] [destino]</code>: Mueve o renombra un archivo/directorio.</li>
+        <li><code>cp [origen] [destino]</code>: Copia un archivo.</li>
+        <li><code>cd [directorio]</code>: Cambia de directorio.</li>
+        <li><code>clang [archivo.c] -o [ejecutable]</code>: Compila un archivo C usando Clang.</li>
+        <li><code>make [ejecutable]</code>: Automatiza el proceso de compilación (usa Clang por debajo).</li>
+        <li><code>./[ejecutable]</code>: Ejecuta un programa compilado.</li>
+    </ul>
+
+    <h2>Depuración de Código (Debugging)</h2>
+    <p>Los <strong>bugs</strong> son errores en el código. La depuración es el proceso de encontrarlos y corregirlos.</p>
+    <ul>
+        <li><strong>Errores de Sintaxis:</strong> Impiden que el código compile (ej., falta un punto y coma). El compilador suele dar mensajes de error.</li>
+        <li><strong>Errores Lógicos:</strong> El código compila y se ejecuta, pero no hace lo que se espera. Requieren un análisis más profundo.</li>
+    </ul>
+
+    <h3>Herramientas de Depuración</h3>
+    <ul>
+        <li><strong><code>printf</code>:</strong> Se puede usar temporalmente para imprimir valores de variables y seguir el flujo del programa.</li>
+        <li><strong>Depuradores (ej., <code>debug50</code>):</strong> Permiten ejecutar el código paso a paso, inspeccionar variables y establecer <strong>puntos de interrupción (breakpoints)</strong> para pausar la ejecución en líneas específicas.</li>
+        <li><strong>Depuración con Pato de Goma (Rubber Duck Debugging):</strong> Explicar el código a un objeto inanimado a menudo ayuda a identificar errores lógicos.</li>
+    </ul>
+
+    <h2>Tipos de Datos en C</h2>
+    <p>C es un lenguaje de tipado estático, lo que significa que las variables deben declararse con un tipo específico.</p>
+    <ul>
+        <li><code>bool</code>: Booleano (<code>true</code> o <code>false</code>), ocupa 1 byte.</li>
+        <li><code>char</code>: Carácter individual (ej., 'A'), ocupa 1 byte.</li>
+        <li><code>int</code>: Entero (ej., 123), suele ocupar 4 bytes (32 bits).</li>
+        <li><code>long</code>: Entero largo, suele ocupar 8 bytes (64 bits), para números más grandes.</li>
+        <li><code>float</code>: Número de punto flotante (con decimales, ej., 3.14), suele ocupar 4 bytes.</li>
+        <li><code>double</code>: Número de punto flotante de doble precisión, suele ocupar 8 bytes, para mayor precisión.</li>
+        <li><code>string</code>: (No es un tipo nativo en C, pero se usa en CS50.h como alias de <code>char*</code>) Secuencia de caracteres.</li>
+    </ul>
+
+    <h3>Ejemplo: Declaración y Uso de Variables</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;cs50.h&gt; // Para get_int
+
+int main(void) {
+    int age = get_int("¿Cuál es tu edad? "); // Obtiene un entero del usuario
+    printf("Tu edad es: %i\n", age);
+
+    char initial = get_char("¿Cuál es tu inicial? "); // Obtiene un carácter
+    printf("Tu inicial es: %c\n", initial);
+
+    float pi = 3.14159;
+    printf("El valor de Pi es: %.2f\n", pi); // %.2f formatea a 2 decimales
+    return 0;
+}
+    </code></pre>
+
+    <h2>Operadores en C</h2>
+    <p>C proporciona varios operadores para realizar operaciones:</p>
+    <ul>
+        <li><strong>Aritméticos:</strong> <code>+</code> (suma), <code>-</code> (resta), <code>*</code> (multiplicación), <code>/</code> (división), <code>%</code> (módulo/resto).</li>
+        <li><strong>Asignación:</strong> <code>=</code> (asigna un valor).</li>
+        <li><strong>Comparación:</strong> <code>==</code> (igual a), <code>!=</code> (diferente de), <code>&lt;</code> (menor que), <code>&gt;</code> (mayor que), <code>&lt;=</code> (menor o igual), <code>&gt;=</code> (mayor o igual).</li>
+        <li><strong>Lógicos:</strong> <code>&&</code> (AND), <code>||</code> (OR), <code>!</code> (NOT).</li>
+        <li><strong>Incremento/Decremento:</strong> <code>++</code> (incrementa en 1), <code>--</code> (decrementa en 1).</li>
+    </ul>
+
+    <h3>Ejemplo: Operadores y Condicionales</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;cs50.h&gt;
+
+int main(void) {
+    int x = get_int("Ingresa un número para x: ");
+    int y = get_int("Ingresa un número para y: ");
+
+    if (x < y) {
+        printf("x es menor que y\n");
+    } else if (x > y) {
+        printf("x es mayor que y\n");
+    } else {
+        printf("x es igual a y\n");
+    }
+
+    // Operadores lógicos
+    if (x > 0 && y > 0) {
+        printf("Ambos x e y son positivos\n");
+    }
+
+    // Incremento
+    x++; // x = x + 1
+    printf("x incrementado: %i\n", x);
+    return 0;
+}
+    </code></pre>
+
+    <h2>Bucles (Loops)</h2>
+    <p>Los bucles permiten ejecutar un bloque de código repetidamente.</p>
+    <ul>
+        <li><strong><code>while</code>:</strong> Repite un bloque de código mientras una condición sea verdadera.</li>
+        <li><strong><code>for</code>:</strong> Ideal para cuando se conoce el número de repeticiones.</li>
+        <li><strong><code>do-while</code>:</strong> Ejecuta el bloque al menos una vez, luego repite mientras la condición sea verdadera.</li>
+    </ul>
+
+    <h3>Ejemplo: Imprimir "Miau" Varias Veces</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;cs50.h&gt;
+
+// Prototipo de función (declaración)
+void meow(int n);
+
+int main(void) {
+    int num_meows = get_int("¿Cuántos miaus quieres? ");
+    meow(num_meows);
+    return 0;
+}
+
+// Definición de función
+void meow(int n) {
+    // Bucle for
+    for (int i = 0; i < n; i++) {
+        printf("¡Miau!\n");
+    }
+
+    // Equivalente con bucle while
+    // int i = 0;
+    // while (i < n) {
+    //     printf("¡Miau!\n");
+    //     i++;
+    // }
+}
+    </code></pre>
+
+    <h2>Funciones Personalizadas y Prototipos</h2>
+    <p>Podemos crear nuestras propias funciones para modularizar el código. Un <strong>prototipo de función</strong> es una declaración de la función antes de su definición, informando al compilador sobre su existencia, tipo de retorno y parámetros.</p>
+    <pre><code>
+#include &lt;stdio.h&gt;
+
+// Prototipo de función: informa al compilador sobre 'sumar'
+int sumar(int a, int b);
+
+int main(void) {
+    int resultado = sumar(5, 3);
+    printf("La suma es: %i\n", resultado);
+    return 0;
+}
+
+// Definición de función: implementa la lógica de 'sumar'
+int sumar(int a, int b) {
+    return a + b;
+}
+    </code></pre>
+
+    <h2>Arrays (Arreglos)</h2>
+    <p>Un array es una colección de elementos del mismo tipo almacenados en ubicaciones de memoria contiguas. Se accede a los elementos mediante un índice (empezando desde 0).</p>
+
+    <h3>Ejemplo: Almacenar Calificaciones</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;cs50.h&gt;
+
+int main(void) {
+    // Declarar un array de 3 enteros
+    int scores[3];
+
+    // Asignar valores
+    scores[0] = get_int("Calificación 1: ");
+    scores[1] = get_int("Calificación 2: ");
+    scores[2] = get_int("Calificación 3: ");
+
+    // Calcular y mostrar el promedio
+    float average = (scores[0] + scores[1] + scores[2]) / 3.0;
+    printf("Promedio: %.2f\n", average);
+    return 0;
+}
+    </code></pre>
+
+    <h2>Strings (Cadenas de Caracteres)</h2>
+    <p>En C, un string es esencialmente un <strong>array de caracteres</strong> que termina con un <strong>carácter nulo (`\0`)</strong>. El carácter nulo es un byte con valor 0 que indica el final de la cadena.</p>
+
+    <h3>Ejemplo: String como Array de Chars</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt; // Para strlen
+
+int main(void) {
+    char s[] = "Hola!"; // String "Hola!"
+    // En memoria: 'H', 'o', 'l', 'a', '!', '\0' (6 bytes)
+
+    printf("El string es: %s\n", s);
+    printf("Longitud del string: %li\n", strlen(s)); // strlen no cuenta el \0
+
+    // Acceder a caracteres individuales
+    printf("Primer carácter: %c\n", s[0]); // Salida: H
+    printf("Segundo carácter: %c\n", s[1]); // Salida: o
+
+    // Imprimir valores ASCII
+    printf("Valor ASCII del primer carácter: %i\n", s[0]); // Salida: 72
+    return 0;
+}
+    </code></pre>
+
+    <h2>Punteros (Pointers)</h2>
+    <p>Un puntero es una variable que almacena una <strong>dirección de memoria</strong>. Permiten acceder y manipular directamente la memoria.</p>
+    <ul>
+        <li>Operador <code>&</code> (dirección de): Obtiene la dirección de memoria de una variable.</li>
+        <li>Operador <code>*</code> (desreferencia): Accede al valor almacenado en la dirección a la que apunta un puntero.</li>
+    </ul>
+
+    <h3>Ejemplo: Uso de Punteros</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+
+int main(void) {
+    int n = 50; // Variable entera
+    int *p = &n; // Puntero 'p' almacena la dirección de 'n'
+
+    printf("Valor de n: %i\n", n); // Salida: 50
+    printf("Dirección de n (en hexadecimal): %p\n", &n); // Salida: (una dirección de memoria)
+    printf("Valor de p (dirección almacenada): %p\n", p); // Salida: (la misma dirección de memoria)
+    printf("Valor al que apunta p: %i\n", *p); // Salida: 50 (desreferencia p)
+
+    // Modificar valor a través del puntero
+    *p = 75;
+    printf("Nuevo valor de n: %i\n", n); // Salida: 75
+    return 0;
+}
+    </code></pre>
+
+    <h3>Punteros y Arrays</h3>
+    <p>Un nombre de array en C es, en muchos contextos, un puntero al primer elemento del array. Esto significa que la notación de corchetes (<code>[]</code>) es "azúcar sintáctico" para la aritmética de punteros.</p>
+    <pre><code>
+#include &lt;stdio.h&gt;
+
+int main(void) {
+    int numbers[] = {10, 20, 30}; // Array de enteros
+
+    // Acceso con notación de array
+    printf("numbers[0]: %i\n", numbers[0]); // Salida: 10
+
+    // Acceso con aritmética de punteros
+    printf("*(numbers + 0): %i\n", *(numbers + 0)); // Salida: 10
+    printf("*(numbers + 1): %i\n", *(numbers + 1)); // Salida: 20
+    return 0;
+}
+    </code></pre>
+
+    <h2>Asignación Dinámica de Memoria (<code>malloc</code> y <code>free</code>)</h2>
+    <p>La asignación dinámica permite solicitar memoria en tiempo de ejecución, en lugar de declararla estáticamente al inicio del programa. Esto es crucial para estructuras de datos de tamaño variable.</p>
+    <ul>
+        <li><code>malloc(size_t size)</code>: Solicita <code>size</code> bytes de memoria y devuelve un puntero a la primera dirección de memoria asignada. Si falla, devuelve <code>NULL</code>.</li>
+        <li><code>free(void *ptr)</code>: Libera la memoria previamente asignada por <code>malloc</code> (o funciones similares) a la que apunta <code>ptr</code>.</li>
+        <li><strong>Regla de oro:</strong> Si haces <code>malloc</code>, debes hacer <code>free</code>. No liberar memoria causa <strong>fugas de memoria (memory leaks)</strong>.</li>
+    </ul>
+
+    <h3>Ejemplo: Copiar un String Dinámicamente</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt; // Para malloc y free
+#include &lt;string.h&gt; // Para strlen y strcpy
+#include &lt;cs50.h&gt;   // Para get_string
+
+int main(void) {
+    char *s = get_string("s: "); // Obtiene un string del usuario
+
+    // Verifica si get_string falló
+    if (s == NULL) {
+        return 1;
+    }
+
+    // Asigna memoria para la copia (t)
+    // strlen(s) + 1 para incluir el carácter nulo '\0'
+    char *t = malloc(strlen(s) + 1);
+
+    // Verifica si malloc falló
+    if (t == NULL) {
+        free(s); // Libera la memoria de s si es necesario (depende de la implementación de get_string)
+        return 1;
+    }
+
+    // Copia el string de s a t
+    strcpy(t, s);
+
+    // Modifica la copia (t)
+    if (strlen(t) > 0) {
+        t[0] = toupper(t[0]); // Convierte el primer carácter a mayúscula
+    }
+
+    printf("s: %s\n", s);
+    printf("t: %s\n", t);
+
+    free(t); // Libera la memoria asignada para t
+    // free(s); // get_string de CS50.h libera su propia memoria, no es necesario aquí
+    return 0;
+}
+    </code></pre>
+
+    <h2>Paso por Valor vs. Paso por Referencia</h2>
+    <p>Cuando se pasan argumentos a una función:</p>
+    <ul>
+        <li><strong>Paso por Valor:</strong> Se pasa una <strong>copia</strong> del valor de la variable. La función trabaja con la copia y no puede modificar la variable original.</li>
+        <li><strong>Paso por Referencia:</strong> Se pasa la <strong>dirección de memoria (puntero)</strong> de la variable. La función puede usar el puntero para acceder y modificar la variable original.</li>
+    </ul>
+
+    <h3>Ejemplo: Intercambiar Valores (Swap)</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+
+// Prototipo de función: swap_bad pasa por valor (no funciona)
+void swap_bad(int a, int b);
+
+// Prototipo de función: swap_good pasa por referencia (funciona)
+void swap_good(int *a, int *b);
+
+int main(void) {
+    int x = 1;
+    int y = 2;
+
+    printf("Antes de swap_bad: x = %i, y = %i\n", x, y);
+    swap_bad(x, y); // Pasa copias de x e y
+    printf("Después de swap_bad: x = %i, y = %i\n", x, y); // x e y no cambian
+
+    printf("Antes de swap_good: x = %i, y = %i\n", x, y);
+    swap_good(&x, &y); // Pasa las direcciones de x e y
+    printf("Después de swap_good: x = %i, y = %i\n", x, y); // x e y sí cambian
+    return 0;
+}
+
+void swap_bad(int a, int b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void swap_good(int *a, int *b) {
+    int temp = *a; // Accede al valor al que apunta 'a'
+    *a = *b;       // Modifica el valor al que apunta 'a'
+    *b = temp;     // Modifica el valor al que apunta 'b'
+}
+    </code></pre>
+
+    <h2>Estructuras (Structs)</h2>
+    <p>Las estructuras permiten agrupar variables de diferentes tipos bajo un mismo nombre, creando un tipo de dato personalizado.</p>
+
+    <h3>Ejemplo: Definir una Persona</h3>
+    <pre><code>
+#include &lt;cs50.h&gt; // Para string
+#include &lt;stdio.h&gt;
+
+// Define una nueva estructura llamada 'person'
+typedef struct {
+    string name;
+    string number;
+} person;
+
+int main(void) {
+    // Crea un array de personas
+    person people[2];
+
+    // Asigna valores a la primera persona
+    people[0].name = "David";
+    people[0].number = "617-495-1000";
+
+    // Asigna valores a la segunda persona
+    people[1].name = "Kelly";
+    people[1].number = "617-495-1000";
+
+    // Imprime la información de la primera persona
+    printf("Nombre: %s, Número: %s\n", people[0].name, people[0].number);
+    return 0;
+}
+    </code></pre>
+
+    <h2>Entrada/Salida de Archivos (File I/O)</h2>
+    <p>Permite a los programas leer y escribir datos en archivos en el disco, lo que proporciona almacenamiento persistente (no volátil).</p>
+    <ul>
+        <li><code>fopen(const char *filename, const char *mode)</code>: Abre un archivo. <code>mode</code> puede ser <code>"r"</code> (lectura), <code>"w"</code> (escritura, sobrescribe), <code>"a"</code> (añadir al final). Devuelve un puntero a <code>FILE</code> o <code>NULL</code> si falla.</li>
+        <li><code>fclose(FILE *stream)</code>: Cierra un archivo.</li>
+        <li><code>fprintf(FILE *stream, const char *format, ...)</code>: Escribe datos formateados en un archivo.</li>
+        <li><code>fscanf(FILE *stream, const char *format, ...)</code>: Lee datos formateados de un archivo.</li>
+    </ul>
+
+    <h3>Ejemplo: Crear una Agenda Telefónica Persistente</h3>
+    <pre><code>
+#include &lt;cs50.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(void) {
+    // Abre el archivo phonebook.csv en modo de añadir ("a")
+    // Si el archivo no existe, lo crea. Si existe, añade al final.
+    FILE *file = fopen("phonebook.csv", "a");
+
+    // Verifica si el archivo se abrió correctamente
+    if (file == NULL) {
+        return 1; // Indica error
+    }
+
+    // Obtiene nombre y número del usuario
+    char *name = get_string("Nombre: ");
+    char *number = get_string("Número: ");
+
+    // Escribe los datos en el archivo en formato CSV
+    fprintf(file, "%s,%s\n", name, number);
+
+    // Cierra el archivo para guardar los cambios
+    fclose(file);
+
+    // get_string de CS50.h libera su propia memoria, no es necesario free(name) o free(number)
+    return 0;
+}
+    </code></pre>
+
+    <h2>Algoritmos de Búsqueda</h2>
+    <p>Los algoritmos de búsqueda se utilizan para encontrar un elemento específico dentro de una colección de datos.</p>
+
+    <h3>Búsqueda Lineal (Linear Search)</h3>
+    <p>Recorre la colección elemento por elemento desde el principio hasta encontrar el objetivo o llegar al final. Es simple pero ineficiente para grandes colecciones.</p>
+    <ul>
+        <li><strong>Complejidad en el peor caso (Big O):</strong> O(n) - el número de pasos crece linealmente con el tamaño de la colección (n).</li>
+        <li><strong>Complejidad en el mejor caso (Omega):</strong> Ω(1) - el elemento se encuentra en el primer intento.</li>
+    </ul>
+
+    <h3>Búsqueda Binaria (Binary Search)</h3>
+    <p>Requiere que la colección esté <strong>ordenada</strong>. Divide repetidamente la colección a la mitad, eliminando la mitad donde el objetivo no puede estar. Mucho más eficiente que la búsqueda lineal para grandes colecciones.</p>
+    <ul>
+        <li><strong>Complejidad en el peor caso (Big O):</strong> O(log n) - el número de pasos crece logarítmicamente con el tamaño de la colección.</li>
+        <li><strong>Complejidad en el mejor caso (Omega):</strong> Ω(1) - el elemento se encuentra en el medio en el primer intento.</li>
+    </ul>
+
+    <h3>Ejemplo: Búsqueda Lineal de un Entero</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;cs50.h&gt;
+
+int main(void) {
+    int numbers[] = {20, 500, 10, 5, 100, 1, 50}; // Array desordenado
+    int n = get_int("Número a buscar: ");
+
+    // Bucle para búsqueda lineal
+    for (int i = 0; i < 7; i++) { // 7 es el tamaño del array
+        if (numbers[i] == n) {
+            printf("¡Encontrado!\n");
+            return 0; // Éxito
+        }
+    }
+
+    printf("No encontrado.\n");
+    return 1; // Fallo
+}
+    </code></pre>
+
+    <h3>Comparación de Strings (<code>strcmp</code>)</h3>
+    <p>En C, no se pueden comparar strings directamente con <code>==</code> porque esto compararía sus direcciones de memoria, no sus contenidos. Se usa la función <code>strcmp</code> de <code>&lt;string.h&gt;</code>.</p>
+    <ul>
+        <li><code>strcmp(s1, s2)</code>: Devuelve 0 si <code>s1</code> y <code>s2</code> son iguales, un número negativo si <code>s1</code> es "menor" (viene antes alfabéticamente) que <code>s2</code>, y un número positivo si <code>s1</code> es "mayor" que <code>s2</code>.</li>
+    </ul>
+    <pre><code>
+#include &lt;cs50.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(void) {
+    char *s = get_string("s: ");
+    char *t = get_string("t: ");
+
+    // Comparar strings usando strcmp
+    if (strcmp(s, t) == 0) {
+        printf("Iguales\n");
+    } else {
+        printf("Diferentes\n");
+    }
+
+    // get_string de CS50.h libera su propia memoria
+    return 0;
+}
+    </code></pre>
+
+    <h2>Algoritmos de Ordenamiento (Sorting)</h2>
+    <p>Los algoritmos de ordenamiento organizan una colección de datos en un orden específico (ej., ascendente o descendente).</p>
+
+    <h3>Ordenamiento por Selección (Selection Sort)</h3>
+    <p>En cada paso, encuentra el elemento más pequeño de la parte no ordenada de la lista y lo intercambia con el primer elemento de esa parte no ordenada.</p>
+    <ul>
+        <li><strong>Complejidad (Big O y Omega):</strong> O(n²) y Ω(n²) - siempre realiza un número de comparaciones cuadrático al tamaño de la lista, incluso si ya está ordenada.</li>
+    </ul>
+
+    <h3>Ordenamiento de Burbuja (Bubble Sort)</h3>
+    <p>Compara pares de elementos adyacentes y los intercambia si están en el orden incorrecto. Repite esto hasta que no se necesiten más intercambios.</p>
+    <ul>
+        <li><strong>Complejidad en el peor caso (Big O):</strong> O(n²)</li>
+        <li><strong>Complejidad en el mejor caso (Omega):</strong> Ω(n) - si la lista ya está ordenada, puede detectarlo en una sola pasada.</li>
+    </ul>
+
+    <h3>Ordenamiento por Fusión (Merge Sort)</h3>
+    <p>Un algoritmo de "divide y vencerás" que divide recursivamente la lista en mitades hasta que cada sublista tiene un solo elemento (que ya está ordenado). Luego, fusiona (merge) las sublistas ordenadas para producir una lista completamente ordenada.</p>
+    <ul>
+        <li><strong>Complejidad (Big O y Omega):</strong> O(n log n) y Ω(n log n) - mucho más eficiente para grandes conjuntos de datos.</li>
+        <li>Requiere espacio adicional (O(n)) para las fusiones.</li>
+    </ul>
+
+    <h2>Recursión</h2>
+    <p>La recursión es una técnica de programación donde una función se define en términos de sí misma. Una función recursiva se llama a sí misma para resolver versiones más pequeñas del mismo problema.</p>
+    <ul>
+        <li><strong>Caso Base:</strong> Una condición que detiene la recursión, resolviendo la versión más simple del problema directamente.</li>
+        <li><strong>Caso Recursivo:</strong> La función se llama a sí misma con una versión más pequeña del problema.</li>
+    </ul>
+
+    <h3>Ejemplo: Pirámide de Mario (Recursiva)</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;cs50.h&gt;
+
+// Prototipo de función
+void draw(int n);
+
+int main(void) {
+    int height = get_int("Altura: ");
+    draw(height);
+    return 0;
+}
+
+void draw(int n) {
+    // Caso base: si la altura es 0 o menos, no dibuja nada y termina
+    if (n <= 0) {
+        return;
+    }
+
+    // Caso recursivo: dibuja una pirámide de altura n-1
+    draw(n - 1);
+
+    // Dibuja una fila de 'n' ladrillos
+    for (int i = 0; i < n; i++) {
+        printf("#");
+    }
+    printf("\n");
+}
+    </code></pre>
+    <p class="note"><strong>Advertencia:</strong> La recursión puede consumir mucha memoria (desbordamiento de pila o "stack overflow") si el caso base no se alcanza o si la profundidad de recursión es muy grande.</p>
+
+    <h2>Estructuras de Datos Avanzadas</h2>
+    <p>Las estructuras de datos son formas de organizar los datos en la memoria de la computadora para un acceso y manipulación eficientes.</p>
+
+    <h3>Listas Enlazadas (Linked Lists)</h3>
+    <p>Una lista enlazada es una colección de <strong>nodos</strong>, donde cada nodo contiene un dato y un puntero al siguiente nodo en la secuencia. A diferencia de los arrays, los nodos no necesitan estar en memoria contigua.</p>
+    <ul>
+        <li><strong>Nodo:</strong> Una estructura que contiene el dato (ej., un número) y un puntero al siguiente nodo (<code>node *next</code>).</li>
+        <li>La lista se mantiene mediante un puntero al primer nodo (la "cabeza" de la lista).</li>
+        <li>Ventaja: Fácil inserción y eliminación de elementos sin reasignar toda la memoria.</li>
+        <li>Desventaja: Acceso secuencial (no se puede saltar directamente a un elemento por índice como en un array).</li>
+    </ul>
+
+    <h3>Ejemplo: Implementación Básica de una Lista Enlazada</h3>
+    <pre><code>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt; // Para malloc y free
+#include &lt;cs50.h&gt;   // Para get_int
+
+// Definición de la estructura del nodo
+typedef struct node {
+    int number;
+    struct node *next; // Puntero al siguiente nodo
+} node;
+
+int main(void) {
+    // Puntero a la cabeza de la lista (inicialmente vacía)
+    node *list = NULL;
+
+    // Añadir 3 números a la lista (prepending - añadir al principio)
+    for (int i = 0; i < 3; i++) {
+        int num = get_int("Número: ");
+
+        // Asignar memoria para un nuevo nodo
+        node *n = malloc(sizeof(node));
+        if (n == NULL) {
+            // Manejar error de memoria
+            // Liberar cualquier memoria ya asignada antes de salir
+            while (list != NULL) {
+                node *temp = list->next;
+                free(list);
+                list = temp;
+            }
+            return 1;
+        }
+
+        // Inicializar el nuevo nodo
+        n->number = num;
+        n->next = list; // El nuevo nodo apunta al antiguo primer nodo
+        list = n;       // La lista ahora apunta al nuevo nodo
+    }
+
+    // Imprimir la lista
+    printf("Lista: ");
+    for (node *ptr = list; ptr != NULL; ptr = ptr->next) {
+        printf("%i ", ptr->number);
+    }
+    printf("\n");
+
+    // Liberar la memoria de la lista
+    while (list != NULL) {
+        node *temp = list->next;
+        free(list);
+        list = temp;
+    }
+    return 0;
+}
+    </code></pre>
+
+    <h3>Árboles (Trees)</h3>
+    <p>Una estructura de datos jerárquica donde cada nodo puede tener uno o más "hijos". Los árboles binarios de búsqueda son comunes para almacenar datos ordenados, permitiendo búsquedas, inserciones y eliminaciones eficientes (O(log n) en el caso promedio).</p>
+
+    <h3>Tablas Hash (Hash Tables)</h3>
+    <p>Implementan la idea de un diccionario (clave-valor) utilizando una función hash para mapear claves a índices en un array. Ofrecen un acceso muy rápido (O(1) en el caso promedio) si la función hash es buena y las colisiones se manejan eficientemente.</p>
+
+    <h2>Consideraciones de Diseño: Correctitud, Diseño y Estilo</h2>
+    <ul>
+        <li><strong>Correctitud:</strong> ¿El código funciona como se espera? ¿Resuelve el problema?</li>
+        <li><strong>Diseño:</strong> ¿El código está bien estructurado? ¿Es eficiente? ¿Es modular? (Ej., usar funciones, elegir el algoritmo correcto).</li>
+        <li><strong>Estilo:</strong> ¿El código es legible? ¿Sigue convenciones de formato y nombrado? (Importante para la colaboración).</li>
+    </ul>
+
+    <h2>Limitaciones de las Computadoras</h2>
+    <ul>
+        <li><strong>Desbordamiento de Enteros (Integer Overflow):</strong> Ocurre cuando un número excede el valor máximo que puede almacenar un tipo de dato entero, lo que lleva a resultados incorrectos (ej., el bug del Boeing 787).</li>
+        <li><strong>Imprecisión de Punto Flotante (Floating-Point Imprecision):</strong> Los números con decimales no siempre se pueden representar con total exactitud debido a la naturaleza finita de los bits, lo que puede causar pequeños errores en cálculos.</li>
+        <li><strong>Desbordamiento de Buffer (Buffer Overflow):</strong> Escribir datos más allá de los límites de un array o buffer, sobrescribiendo memoria adyacente y causando fallos o vulnerabilidades de seguridad.</li>
+        <li><strong>Fugas de Memoria (Memory Leaks):</strong> No liberar la memoria asignada dinámicamente, lo que puede agotar los recursos del sistema con el tiempo.</li>
+        <li><strong>Desbordamiento de Pila (Stack Overflow):</strong> Ocurre cuando una función recursiva se llama a sí misma demasiadas veces sin alcanzar un caso base, agotando la memoria de la pila.</li>
+    </ul>
+
+    <div class="note">
+        <strong>Recuerda:</strong> C es un lenguaje de bajo nivel que ofrece un gran control sobre la memoria, lo que permite escribir código muy eficiente. Sin embargo, este control conlleva una gran responsabilidad, ya que es fácil cometer errores relacionados con la memoria si no se es cuidadoso. Lenguajes de más alto nivel como Python abstraen gran parte de esta complejidad.
+    </div>
+
+</body>
+</html>

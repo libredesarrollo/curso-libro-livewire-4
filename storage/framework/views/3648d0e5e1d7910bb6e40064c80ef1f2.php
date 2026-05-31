@@ -10,11 +10,11 @@
 <?php $component->withAttributes(['title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($title ?? null)]); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
+    
 
-
-    <div wire:offline>
-        This device is currently offline.
-    </div>
+    ---<div wire:offline>
+        This device is currently offline. Master
+    </div>---
 
 
 
