@@ -36,6 +36,11 @@ new class extends Component {
 
     function submit()
     {
+        if (config('demo.enabled')) {
+            session()->flash('demo', __('Demo mode: changes are not allowed.'));
+            return;
+        }
+
         // $data = $this->validate();
         $this->form->store();
         if ($this->post) {
@@ -70,6 +75,12 @@ new class extends Component {
     <x-action-message on="updated">
         {{ __('Post updated successfully') }}
     </x-action-message>
+
+    @if (session('demo'))
+        <flux:badge color="orange" icon="exclamation-triangle" class="mb-4">
+            {{ session('demo') }}
+        </flux:badge>
+    @endif
 
     <div wire:poll.1s>
         Ventas totales de libros hoy: ${{ $timestampActual }}

@@ -47,6 +47,12 @@ new class extends DataTableComponent
 
     public function delete(): void
     {
+        if (config('demo.enabled')) {
+            session()->flash('demo', __('Demo mode: deletes are not allowed.'));
+            Flux::modal('delete-tag')->close();
+            return;
+        }
+
         Flux::modal('delete-tag')->close();
         $this->tagToDelete->delete();
         $this->dispatch('deleted');
@@ -79,6 +85,12 @@ new class extends DataTableComponent
     <x-action-message on="deleted" class="mt-4">
         {{ __('Tag deleted successfully') }}
     </x-action-message>
+
+    @if (session('demo'))
+        <flux:badge color="orange" icon="exclamation-triangle" class="mb-4">
+            {{ session('demo') }}
+        </flux:badge>
+    @endif
 
     <flux:card>
         <flux:table :paginate="$tags">

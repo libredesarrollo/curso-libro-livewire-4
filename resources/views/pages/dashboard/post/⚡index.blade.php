@@ -71,6 +71,11 @@ new class extends DataTableComponent
 
     public function delete(Post $post): void
     {
+        if (config('demo.enabled')) {
+            session()->flash('demo', __('Demo mode: deletes are not allowed.'));
+            return;
+        }
+
         $post->delete();
         $this->dispatch('deleted');
     }
@@ -122,6 +127,12 @@ new class extends DataTableComponent
     @if (session('status'))
         <flux:badge color="green" icon="check" class="mb-4">
             {{ session('status') }}
+        </flux:badge>
+    @endif
+
+    @if (session('demo'))
+        <flux:badge color="orange" icon="exclamation-triangle" class="mb-4">
+            {{ session('demo') }}
         </flux:badge>
     @endif
 

@@ -32,6 +32,11 @@ new class extends Component {
 
     function submit()
     {
+        if (config('demo.enabled')) {
+            session()->flash('demo', __('Demo mode: changes are not allowed.'));
+            return;
+        }
+
         if ($this->category) {
             $this->category->update($this->validate());
             $this->dispatch('updated');
@@ -79,6 +84,12 @@ new class extends Component {
     <x-action-message on="updated">
         {{ __('Category updated successfully') }}
     </x-action-message>
+
+    @if (session('demo'))
+        <flux:badge color="orange" icon="exclamation-triangle" class="mb-4">
+            {{ session('demo') }}
+        </flux:badge>
+    @endif
 
     <form wire:submit.prevent="submit" class="space-y-6">
 

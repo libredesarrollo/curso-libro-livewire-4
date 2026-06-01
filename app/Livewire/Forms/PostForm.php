@@ -55,6 +55,10 @@ class PostForm extends Form
 
     public function store()
     {
+        if (config('demo.enabled')) {
+            return;
+        }
+
         $data = $this->validate();
 
         if ($this->post) {

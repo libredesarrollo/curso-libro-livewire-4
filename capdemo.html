@@ -1,0 +1,34 @@
+<h2>Capítulo: Modo Demo — Bloqueo de operaciones CRUD en el Dashboard</h2>
+
+Para implementar un modo demo que impida crear, actualizar y eliminar registros desde el dashboard de Livewire, seguí estos pasos:
+
+Primero cree un archivo de configuración en config/demo.php con un valor por defecto true. Esto permite activar o desactivar el modo demo desde el archivo .env usando DEMO_MODE_ENABLED.
+
+Luego analicé todos los componentes Livewire del dashboard. En este proyecto los componentes son Single File Components (SFC), archivos .blade.php que contienen tanto la lógica PHP como el template HTML. Los componentes involucrados fueron:
+
+- resources/views/pages/dashboard/category/⚡save.blade.php
+- resources/views/pages/dashboard/category/⚡index.blade.php
+- resources/views/pages/dashboard/post/⚡save.blade.php
+- resources/views/pages/dashboard/post/⚡index.blade.php
+- resources/views/pages/dashboard/tag/⚡save.blade.php
+- resources/views/pages/dashboard/tag/⚡index.blade.php
+- app/Livewire/Forms/PostForm.php
+
+En cada método que ejecuta una operación de escritura (submit para crear/actualizar, delete para eliminar) agregué una validación al inicio:
+
+if (config('demo.enabled')) {
+    session()->flash('demo', __('Demo mode: changes are not allowed.'));
+    return;
+}
+
+La función config('demo.enabled') lee el valor del archivo de configuración. Si devuelve true, la ejecución se detiene con un return y se guarda un mensaje en la sesión.
+
+Para mostrar ese mensaje al usuario, agregué en cada template Blade un bloque que verifica si existe el mensaje en la sesión y lo renderiza con un componente Flux badge de color naranja:
+
+@if (session('demo'))
+    <flux:badge color="orange" icon="exclamation-triangle" class="mb-4">
+        {{ session('demo') }}
+    </flux:badge>
+@endif
+
+De esta forma, cuando el modo demo está activo, cualquier intento de guardar o eliminar un registro muestra un aviso visual y la operación no se ejecuta. Para desactivar el modo demo solo hay que agregar DEMO_MODE_ENABLED=false en el archivo .env.

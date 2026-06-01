@@ -48,6 +48,12 @@ new class extends DataTableComponent
     }
 
     function delete(/*Category $category*/)  {
+        if (config('demo.enabled')) {
+            session()->flash('demo', __('Demo mode: deletes are not allowed.'));
+            Flux::modal("delete-category")->close();
+            return;
+        }
+
         // $category->delete();
         Flux::modal("delete-category")->close();
         $this->categoryToDelete->delete();
@@ -81,6 +87,12 @@ new class extends DataTableComponent
     <x-action-message on="deleted" class="mt-4">
         {{ __('Category deleted successfully') }}
     </x-action-message>
+
+    @if (session('demo'))
+        <flux:badge color="orange" icon="exclamation-triangle" class="mb-4">
+            {{ session('demo') }}
+        </flux:badge>
+    @endif
 
     <flux:card>
         <flux:table :paginate="$categories">
