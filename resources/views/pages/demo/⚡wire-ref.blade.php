@@ -2,7 +2,9 @@
 
 use Livewire\Component;
 
-new class extends Component {
+use Livewire\Attributes\Layout;
+
+new #[Layout('layouts.web')] class extends Component {
     
 };
 ?>

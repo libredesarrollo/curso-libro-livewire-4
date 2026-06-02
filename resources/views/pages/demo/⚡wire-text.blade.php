@@ -3,7 +3,9 @@
 use Livewire\Component;
 use App\Models\Post;
 
-new class extends Component {
+use Livewire\Attributes\Layout;
+
+new #[Layout('layouts.web')] class extends Component {
     public $likes;
 
     public function mount()

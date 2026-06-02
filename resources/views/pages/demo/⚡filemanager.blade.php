@@ -1,9 +1,10 @@
 <?php
 
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 
-new class extends Component
-{
+new #[Layout('layouts.web')] class extends Component {
+
     public string $title = 'File Manager Demo';
 }
 ?>
@@ -47,7 +48,7 @@ new class extends Component
         </div>
 
         <div class="min-h-[500px]">
-            <livewire:livewire-filemanager />
+            {{-- <livewire:livewire-filemanager /> --}}
         </div>
     </div>
     @filemanagerScripts

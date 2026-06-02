@@ -1,6 +1,7 @@
 <?php
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 ?>
 
 <div class="p-6 border rounded-lg shadow-sm bg-gray-400">

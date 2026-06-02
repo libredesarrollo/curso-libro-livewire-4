@@ -1,5 +1,6 @@
 <?php
 use Livewire\Component;
+use Livewire\Attributes\Layout;
 ?>
 
 <div class="p-6 max-w-4xl mx-auto space-y-6">

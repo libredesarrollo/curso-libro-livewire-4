@@ -3,8 +3,9 @@
 use Livewire\Component;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Layout;
 
-new class extends Component {
+new #[Layout('layouts.web')] class extends Component {
     // 1. Estado reactivo público del componente
     public string $search = '';
 

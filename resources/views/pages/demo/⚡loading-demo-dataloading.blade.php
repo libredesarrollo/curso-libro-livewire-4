@@ -3,7 +3,9 @@
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-new class extends Component {
+use Livewire\Attributes\Layout;
+
+new #[Layout('layouts.web')] class extends Component {
     public array $users = [
         ['id' => 1, 'name' => 'John Doe'],
         ['id' => 2, 'name' => 'Jane Smith'],
