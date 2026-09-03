@@ -57,7 +57,7 @@ unset($__defined_vars, $__key, $__value); ?>
         <h3 class="text-base font-semibold text-neutral-900 dark:text-white">Exception trace</h3>
         <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($exception->previousExceptions()->isNotEmpty()): ?>
             <a href="#previous-exceptions" class="ml-auto text-sm text-neutral-500 dark:text-neutral-400 hover:text-blue-500 dark:hover:text-emerald-500 transition-colors">
-                <?php echo e($exception->previousExceptions()->count()); ?> previous <?php echo e(Str::plural('exception', $exception->previousExceptions()->count())); ?>
+                <?php echo e($exception->previousExceptions()->count()); ?> previous <?php echo e(\Illuminate\Support\Str::plural('exception', $exception->previousExceptions()->count())); ?>
 
             </a>
         <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>

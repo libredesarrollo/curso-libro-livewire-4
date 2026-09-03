@@ -129,12 +129,12 @@ $inputLoadingClasses = Flux::classes()
     ;
 
 $classes = Flux::classes()
-    ->add('w-full border rounded-lg block disabled:shadow-none dark:shadow-none')
+    ->add('w-full border block disabled:shadow-none dark:shadow-none')
     ->add('appearance-none') // Without this, input[type="date"] on mobile doesn't respect w-full...
     ->add(match ($size) {
-        default => 'text-base sm:text-sm py-2 h-10 leading-[1.375rem]', // This makes the height of the input 40px (same as buttons and such...)
-        'sm' => 'text-sm py-1.5 h-8 leading-[1.125rem]',
-        'xs' => 'text-xs py-1.5 h-6 leading-[1.125rem]',
+        default => 'text-base sm:text-sm rounded-lg py-2 h-10 leading-[1.375rem]', // This makes the height of the input 40px (same as buttons and such...)
+        'sm' => 'text-sm rounded-md py-1.5 h-8 leading-[1.125rem]',
+        'xs' => 'text-xs rounded-md py-1.5 h-6 leading-[1.125rem]',
     })
     ->add(match ($hasLeadingIcon) {
         true => 'ps-10',
@@ -229,7 +229,7 @@ $classes = Flux::classes()
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
         <div <?php echo e($attributes->only('class')->class('w-full relative block group/input')); ?> data-flux-input>
-            <?php if (is_string($iconLeading)): ?>
+            <?php if (is_string($iconLeading) && $iconLeading !== ''): ?>
                 <div class="pointer-events-none absolute top-0 bottom-0 border-s border-transparent flex items-center justify-center text-xs text-zinc-400/75 dark:text-white/60 ps-3 start-0">
                     <?php if (isset($component)) { $__componentOriginalc7d5f44bf2a2d803ed0b55f72f1f82e2 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc7d5f44bf2a2d803ed0b55f72f1f82e2 = $attributes; } ?>
@@ -311,14 +311,14 @@ $classes = Flux::classes()
                     <?php if ($clearable): ?>
                         <?php if (isset($component)) { $__componentOriginala203db08cf0442e67394e93e460c613d = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginala203db08cf0442e67394e93e460c613d = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.clearable','data' => ['inset' => 'left right','size' => $size]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.clearable','data' => ['inset' => 'left right','size' => $size,'iconVariant' => $iconVariant]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::input.clearable'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['inset' => 'left right','size' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($size)]); ?>
+<?php $component->withAttributes(['inset' => 'left right','size' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($size),'iconVariant' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($iconVariant)]); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
 <?php echo $__env->renderComponent(); ?>
@@ -334,20 +334,20 @@ $classes = Flux::classes()
                     <?php endif; ?>
 
                     <?php if ($kbd): ?>
-                        <span class="pointer-events-none"><?php echo e($kbd); ?></span>
+                        <span class="pointer-events-none last:pe-2"><?php echo e($kbd); ?></span>
                     <?php endif; ?>
 
                     <?php if ($expandable): ?>
                         <?php if (isset($component)) { $__componentOriginal5693141c88400a0f1d4127aa06fc2706 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5693141c88400a0f1d4127aa06fc2706 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.expandable','data' => ['inset' => 'left right','size' => $size]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.expandable','data' => ['inset' => 'left right','size' => $size,'iconVariant' => $iconVariant]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::input.expandable'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['inset' => 'left right','size' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($size)]); ?>
+<?php $component->withAttributes(['inset' => 'left right','size' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($size),'iconVariant' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($iconVariant)]); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
 <?php echo $__env->renderComponent(); ?>
@@ -365,14 +365,14 @@ $classes = Flux::classes()
                     <?php if ($copyable): ?>
                         <?php if (isset($component)) { $__componentOriginalf2c3e783504dae18be080b76eb6f68c2 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf2c3e783504dae18be080b76eb6f68c2 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.copyable','data' => ['inset' => 'left right','size' => $size]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.copyable','data' => ['inset' => 'left right','size' => $size,'iconVariant' => $iconVariant]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::input.copyable'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['inset' => 'left right','size' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($size)]); ?>
+<?php $component->withAttributes(['inset' => 'left right','size' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($size),'iconVariant' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($iconVariant)]); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
 <?php echo $__env->renderComponent(); ?>
@@ -390,14 +390,14 @@ $classes = Flux::classes()
                     <?php if ($viewable): ?>
                         <?php if (isset($component)) { $__componentOriginal8ef34dbb177380afbb9c18ab4875b63a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8ef34dbb177380afbb9c18ab4875b63a = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.viewable','data' => ['inset' => 'left right','size' => $size]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.viewable','data' => ['inset' => 'left right','size' => $size,'iconVariant' => $iconVariant]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::input.viewable'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['inset' => 'left right','size' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($size)]); ?>
+<?php $component->withAttributes(['inset' => 'left right','size' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($size),'iconVariant' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($iconVariant)]); ?>
 <?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::processComponentKey($component); ?>
 
 <?php echo $__env->renderComponent(); ?>
@@ -412,7 +412,7 @@ $classes = Flux::classes()
 <?php endif; ?>
                     <?php endif; ?>
 
-                    <?php if (is_string($iconTrailing)): ?>
+                    <?php if (is_string($iconTrailing) && $iconTrailing !== ''): ?>
                         <?php
                             $trailingIconClasses = clone $iconClasses;
                             $trailingIconClasses->add('text-zinc-400/75 dark:text-white/60 pointer-events-none');
@@ -458,7 +458,7 @@ $classes = Flux::classes()
 <?php endif; ?>
 <?php else: ?>
     <button <?php echo e($attributes->merge(['type' => 'button'])->class([$classes, 'w-full relative flex'])); ?>>
-        <?php if (is_string($iconLeading)): ?>
+        <?php if (is_string($iconLeading) && $iconLeading !== ''): ?>
             <div class="absolute top-0 bottom-0 flex items-center justify-center text-xs text-zinc-400/75 ps-3 start-0">
                 <?php if (isset($component)) { $__componentOriginalc7d5f44bf2a2d803ed0b55f72f1f82e2 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc7d5f44bf2a2d803ed0b55f72f1f82e2 = $attributes; } ?>
@@ -509,7 +509,7 @@ $classes = Flux::classes()
             </div>
         <?php endif; ?>
 
-        <?php if (is_string($iconTrailing)): ?>
+        <?php if (is_string($iconTrailing) && $iconTrailing !== ''): ?>
             <div class="absolute top-0 bottom-0 flex items-center justify-center text-xs text-zinc-400/75 pe-3 end-0">
                 <?php if (isset($component)) { $__componentOriginalc7d5f44bf2a2d803ed0b55f72f1f82e2 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc7d5f44bf2a2d803ed0b55f72f1f82e2 = $attributes; } ?>

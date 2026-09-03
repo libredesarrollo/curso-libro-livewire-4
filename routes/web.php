@@ -61,6 +61,8 @@ Route::livewire('/demo/wiretext', 'pages::demo.wire-text')->name('demo.wire-text
 Route::livewire('/demo/wireref', 'pages::demo.wire-ref')->name('demo.wire-ref');
 Route::livewire('/demo/filemanager', 'pages::demo.filemanager')->name('demo.filemanager');
 
+Route::livewire('/demo/wireref', 'pages::demo.wire-ref')->name('demo.wire-ref');
+
 
 Route::group(['prefix' => 'blog'], function () {
     // BLOG
@@ -73,4 +75,4 @@ Route::group(['prefix' => 'shop'], function () {
     Route::livewire('/', 'pages::shop.cart')->name('shop.cart.list');
 });
 
-require __DIR__.'/settings.php';
+require __DIR__ . '/settings.php';
