@@ -10,28 +10,28 @@ namespace {
     /**
      * Runs the given closure before each test in the current file.
      *
-     * @param-closure-this \PHPUnit\Framework\TestCase|\_Pest\Global\TestCase|\Tests\TestCase|\_Pest\Feature\TestCase  $closure
+     * @param-closure-this \PHPUnit\Framework\TestCase|\_Pest\Global\TestCase  $closure
      */
     function beforeEach(?Closure $closure = null): \Pest\PendingCalls\BeforeEachCall {}
 
     /**
      * Runs the given closure after each test in the current file.
      *
-     * @param-closure-this \PHPUnit\Framework\TestCase|\_Pest\Global\TestCase|\Tests\TestCase|\_Pest\Feature\TestCase  $closure
+     * @param-closure-this \PHPUnit\Framework\TestCase|\_Pest\Global\TestCase  $closure
      */
     function afterEach(?Closure $closure = null): \Pest\PendingCalls\AfterEachCall {}
 
     /**
      * Adds the given closure as a test.
      *
-     * @param-closure-this \PHPUnit\Framework\TestCase|\_Pest\Global\TestCase|\Tests\TestCase|\_Pest\Feature\TestCase  $closure
+     * @param-closure-this \PHPUnit\Framework\TestCase|\_Pest\Global\TestCase  $closure
      */
     function test(?string $description = null, ?Closure $closure = null): \Pest\Support\HigherOrderTapProxy|\Pest\PendingCalls\TestCall {}
 
     /**
      * Adds the given closure as a test.
      *
-     * @param-closure-this \PHPUnit\Framework\TestCase|\_Pest\Global\TestCase|\Tests\TestCase|\_Pest\Feature\TestCase  $closure
+     * @param-closure-this \PHPUnit\Framework\TestCase|\_Pest\Global\TestCase  $closure
      */
     function it(string $description, ?Closure $closure = null): \Pest\PendingCalls\TestCall {}
 
@@ -41,14 +41,6 @@ namespace _Pest\Global {
 
     class TestCase {
         use \Pest\Arch\Concerns\Architectable;
-    }
-
-}
-
-namespace _Pest\Feature {
-
-    class TestCase {
-        use \Illuminate\Foundation\Testing\RefreshDatabase;
     }
 
 }

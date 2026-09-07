@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae06a5ba3d8660ef7f3e775c4f6e483c",
+    "content-hash": "a6bdb02e7280d1b8a331d38e1d273a8b",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -8192,6 +8192,76 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.4.0"
             },
             "time": "2025-12-02T11:56:42+00:00"
+        },
+        {
+            "name": "unnathianalytics/laragrid",
+            "version": "v1.41.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unnathianalytics/laragrid.git",
+                "reference": "14a7ddcb081c66c3fa939734e0949877ad776aa8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unnathianalytics/laragrid/zipball/14a7ddcb081c66c3fa939734e0949877ad776aa8",
+                "reference": "14a7ddcb081c66c3fa939734e0949877ad776aa8",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0|^11.0|^12.0|^13.0",
+                "illuminate/database": "^10.0|^11.0|^12.0|^13.0",
+                "illuminate/support": "^10.0|^11.0|^12.0|^13.0",
+                "illuminate/validation": "^10.0|^11.0|^12.0|^13.0",
+                "illuminate/view": "^10.0|^11.0|^12.0|^13.0",
+                "livewire/livewire": "^4.1",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "larastan/larastan": "^2.9|^3.0",
+                "laravel/pint": "^1.13",
+                "orchestra/testbench": "^8.21|^9.0|^10.0|^11.0",
+                "pestphp/pest": "^2.34|^3.0|^4.0",
+                "pestphp/pest-plugin-laravel": "^2.4|^3.0|^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LaraGrid\\LaraGridServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LaraGrid\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Unnathi",
+                    "email": "unnathianalytics@gmail.com"
+                }
+            ],
+            "description": "Excel-style, keyboard-first datagrid for Laravel + Livewire — display, server-side readonly, and editable grids, fully configured from the component class with zero blade wiring and zero consumer build tooling.",
+            "keywords": [
+                "alpine",
+                "datagrid",
+                "excel",
+                "grid",
+                "laravel",
+                "livewire",
+                "spreadsheet",
+                "table"
+            ],
+            "support": {
+                "issues": "https://github.com/unnathianalytics/laragrid/issues",
+                "source": "https://github.com/unnathianalytics/laragrid/tree/v1.41.0"
+            },
+            "time": "2026-08-28T03:11:25+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

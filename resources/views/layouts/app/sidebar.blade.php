@@ -25,9 +25,13 @@
                     :current="request()->routeIs('d-category-*')" wire:navigate>
                     {{ __('Category') }}
                 </flux:sidebar.item>
-                <flux:sidebar.item icon="home" :href="route('d-post-index')" :current="request()->routeIs('d-post-*')"
-                    wire:navigate>
+                <flux:sidebar.item icon="home" :href="route('d-post-index')"
+                    :current="request()->routeIs(['d-post-index', 'd-post-create', 'd-post-edit'])" wire:navigate>
                     {{ __('Post') }}
+                </flux:sidebar.item>
+                <flux:sidebar.item icon="table-cells" :href="route('d-post-grid')"
+                    :current="request()->routeIs('d-post-grid')" wire:navigate>
+                    {{ __('Post Grid') }}
                 </flux:sidebar.item>
                 <flux:sidebar.item icon="home" :href="route('d-tag-index')" :current="request()->routeIs('d-tag-*')"
                     wire:navigate>

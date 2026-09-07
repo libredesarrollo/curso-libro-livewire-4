@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
             Route::livewire('', 'pages::dashboard.post.index')->name('d-post-index');
             Route::livewire('create', 'pages::dashboard.post.save')->name('d-post-create');
             Route::livewire('edit/{id}', 'pages::dashboard.post.save')->name('d-post-edit');
+            Route::livewire('grid', 'pages::dashboard.post.grid')->name('d-post-grid');
         });
         Route::group(['prefix' => 'tag'], function () {
             Route::livewire('', 'pages::dashboard.tag.index')->name('d-tag-index');
@@ -63,7 +64,6 @@ Route::livewire('/demo/filemanager', 'pages::demo.filemanager')->name('demo.file
 
 Route::livewire('/demo/wireref', 'pages::demo.wire-ref')->name('demo.wire-ref');
 
-
 Route::group(['prefix' => 'blog'], function () {
     // BLOG
     Route::livewire('/', 'pages::blog.index')->name('web.index');
@@ -75,4 +75,4 @@ Route::group(['prefix' => 'shop'], function () {
     Route::livewire('/', 'pages::shop.cart')->name('shop.cart.list');
 });
 
-require __DIR__ . '/settings.php';
+require __DIR__.'/settings.php';
