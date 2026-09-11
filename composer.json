@@ -18,9 +18,11 @@
         "livewire-filemanager/filemanager": "^1.1",
         "livewire/flux": "^2.12.0",
         "livewire/livewire": "^4.1",
+        "ramadan/custom-fresh": "^2.1",
         "unnathianalytics/laragrid": "^1.41"
     },
     "require-dev": {
+        "albertoarena/laravel-truss": "^1.11",
         "fakerphp/faker": "^1.24",
         "laravel/boost": "*",
         "laravel/pail": "^1.2.5",
